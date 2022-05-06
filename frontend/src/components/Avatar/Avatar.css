@@ -1,0 +1,40 @@
+.avatar {
+    display: flex;
+    position: absolute;
+    border-radius: 8px;
+    transition: 0.3s;
+    flex-direction: column;
+    justify-content: center;
+    pointer-events: none;
+    vertical-align: bottom;
+    padding: 15px;
+    padding-bottom: 0;
+}
+
+.avatar-owner {
+    display: flex;
+    opacity: 0;
+    text-align: center;
+    transition: 0.5s;
+
+    font-size: 1rem;
+    font-family: 'Segoe UI';
+    font-weight: 600;
+    line-height: 1rem;
+}
+
+.avatar:hover {
+    background: rgba(25, 25, 25, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 2;
+    padding-bottom: 25px;
+    margin-bottom: 2px;
+}
+
+.avatar:hover .avatar-owner {
+    opacity: 1;
+}
+
+.avatar img {
+    pointer-events: auto;
+}

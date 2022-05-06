@@ -15,14 +15,14 @@ function Room() {
     const [queue, setQueue] = useState([])
     const [avatars, setAvatars] = useState([])
     const [video, setVideo] = useState(null)
-    const [loading, setLoading] = useState({ loading: true })
+    const [loading, setLoading] = useState(true)
     const { roomName } = useParams()
 
     useEffect(() => {
         socket.on("info", (data) => {
             setVideo(data)
             player.setVideo(data)
-            setLoading({ loading: false })
+            setLoading(false)
         })
 
         socket.on("skip", () => {
@@ -44,7 +44,7 @@ function Room() {
             ])
         })
 
-        socket.on("invalid-room", () => setLoading({ loading: true, error: true }))
+        socket.on("invalid-room", () => setLoading(true))
         socket.on("avatars", (data) => setAvatars(data))
 
         socket.emit("enter-room", roomName)
@@ -53,7 +53,7 @@ function Room() {
     }, [])
 
     const handleInput = (type) => {
-        switch (type){
+        switch (type) {
             case "config":
                 console.log("Modal config")
                 break
@@ -65,14 +65,14 @@ function Room() {
 
     return (
         <div className="App">
-            <Loading info={loading} />
+            {loading && <Loading />}
             <div className="container">
-                <VideoPlayer
-                    playerReady={() => socket.emit("get-info")}
-                />
+                <VideoPlayer playerReady={() => socket.emit("get-info")} />
                 <Controls video={video} handleInput={handleInput} />
-                <Queue loading={loading} videos={queue} />
-                <DanceFloor avatars={avatars} />
+                {!loading && 
+                    <Queue loading={loading} videos={queue} /> && 
+                    <DanceFloor avatars={avatars} />
+                }
             </div>
         </div>
     )
