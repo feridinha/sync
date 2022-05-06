@@ -1,0 +1,51 @@
+.room-card{
+    display: flex;
+    width: 350px;
+    height: 250px;
+    background-color: rgb(12, 12, 12, 0.4);
+    margin: 50px;
+    border-radius: 20px;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px;
+    font-family: "cubano",sans-serif;
+    gap: 10px;
+    backdrop-filter: blur(9px);
+    transition: box-shadow 0.5s;
+    box-shadow: 0px 0px 35px rgba(0,0,0, 0.4);
+}
+
+.room-card:hover{
+    box-shadow: 0px 0px 35px var(--comment);
+}
+
+.room-image{
+    max-width: 50%;
+    border-radius: 20%;
+}
+
+.room-card h3{
+    font-size: 30px;
+    color: var(--foreground);
+}
+
+.open-room-button{
+    border: none;
+    background-color: var(--comment);
+    color: var(--background-color);
+    cursor: pointer;
+    justify-self: flex-end;
+    padding: 8px;
+    border-radius: 8px;
+    width: 80%;
+    text-align: center;
+    font-size: 15px;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+.open-room-button:hover{
+    font-weight: 700;
+    color: var(--foreground);
+    background-color: var(--current-line);
+}

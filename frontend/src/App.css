@@ -1,0 +1,43 @@
+:root {
+    --background-contrast: #191919;
+    --background: #282a36;
+    --current-line: #44475a;
+    --foreground: #f8f8f2;
+    --comment: #6272a4;
+    --red: #ff5555;
+    --green: #50fa7b;
+    --purple: #bd93f9;
+    --cyan: #8be9fd;
+    --yellow: rgb(241, 250, 140);
+    --orange: rgb(255, 184, 108);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: var(--background);
+}
+
+.ns{
+    user-select: none;
+}
+
+/* 
+Background	#282a36	
+Current Line	#44475a	
+Foreground	#f8f8f2	
+Comment	#6272a4	
+Cyan	#8be9fd	
+Green	#50fa7b	
+Orange	#ffb86c	
+Pink	#ff79c6	
+Purple	#bd93f9	
+Red	#ff5555	
+Yellow	#f1fa8c */

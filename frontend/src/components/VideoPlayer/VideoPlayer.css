@@ -1,0 +1,13 @@
+.video-player{
+    display: flex;
+    grid-area: video;
+    background-color: red;
+    justify-content: center;
+}
+
+.video-wrapper{
+    aspect-ratio: 16/9;
+    height: 100%;
+    background-color: var(--current-line);
+    width: 100%;
+}

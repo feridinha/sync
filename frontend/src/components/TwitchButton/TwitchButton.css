@@ -1,0 +1,12 @@
+.twitch-button{
+    text-decoration: none;
+    background-color: #9147FF;
+    color: #fff;
+    padding: 8px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    line-height: 1.1rem;
+    vertical-align: middle;
+    user-select: none;
+}

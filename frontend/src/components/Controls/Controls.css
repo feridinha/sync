@@ -1,0 +1,46 @@
+.controls {
+    grid-area: controls;
+    display: flex;
+    aspect-ratio: 16/9;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    width: auto;
+}
+
+.buttons > button{
+    background: none;
+    border: none;
+    margin: 0.3rem;
+    padding: 4px;
+    justify-content: center;
+    transition: 0.3s;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.buttons > button img{
+    width: auto;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.buttons button:hover{
+    background-color: var(--foreground);
+}
+
+.video-title{
+    font-family: monospace;
+    font-size: 1.1rem;
+    word-break: break-all;
+    color: var(--foreground);
+    text-align: center;
+    font-weight: 500;
+}
+
+.video-author{
+    font-size: 1rem;
+    font-family: 'Segoe UI';
+    font-weight: 600;
+    line-height: 1rem;
+}

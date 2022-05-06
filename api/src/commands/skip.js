@@ -1,0 +1,30 @@
+const rooms = require("../models/rooms")
+const User = require("../models/User")
+
+function skip(args, tags, cli) {
+    const user = new User(tags)
+    if (!(user.mod || user.broadcaster || user.admin)) return 
+
+    if (!parseInt(args[0])) {
+        rooms[tags.channel].player.skipCurrent()
+        return cli.say(tags.channel, `@Feridinha, o vídeo atual foi skipado ⏭️`)
+    }
+
+    item = getItemByIndex(parseInt(args[0]), tags.channel)
+
+    if (!item)
+        return cli.say(
+            tags.channel,
+            `@Feridinha, não encontrei esse vídeo... :(`
+        )
+    rooms[tags.channel].player.removeById(item.uuid)
+    return cli.say(tags.channel, `@Feridinha, o vídeo #${args[0]} foi skipado ⏭️`)
+}
+
+function getItemByIndex(index, channel) {
+    if (index > rooms[channel].player.queue.length || index <= 0) return false
+
+    return rooms[channel].player.queue[index - 1]
+}
+
+module.exports = skip

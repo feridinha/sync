@@ -1,0 +1,10 @@
+.twitch-badges{
+    display: inline-block;
+    height: 1rem;
+    width: auto;
+    vertical-align: bottom;
+}
+
+.twitch-badges > img{
+    margin-right: 2px;
+}

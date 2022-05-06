@@ -1,0 +1,15 @@
+.dance-floor{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    grid-area: dance-floor;
+    width: calc(100% - 50px);
+    margin-left: 25px;
+    height: 100%;
+    overflow:visible;
+    align-items: flex-end;
+}
+
+.avatar{
+    position: absolute;
+}

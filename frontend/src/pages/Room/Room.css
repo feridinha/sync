@@ -1,0 +1,11 @@
+.container {
+    display: grid;
+    height: 100%;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows: 50vh 25vh 25vh;
+    grid-template-areas:
+        "sidebar video users"
+        "sidebar controls users"
+        "dance-floor dance-floor dance-floor";
+    overflow: hidden;
+}
