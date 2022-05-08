@@ -21,7 +21,7 @@ app.use("/", routes)
 
 io.on("connection", (socket) => {
     console.log(`[Socket]: Nova conexão, ${socket.id}`)
-
+    socket.emit("ready")
     socket.on("enter-room", (room) => {
         if (!room || !rooms.checkRoomExists(room))
             return socket.emit("invalid-room")
@@ -48,3 +48,4 @@ io.on("connection", (socket) => {
 
 server.listen(9999)
 module.exports = io
+

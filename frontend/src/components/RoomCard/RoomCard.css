@@ -22,6 +22,8 @@
 .room-image{
     max-width: 50%;
     border-radius: 20%;
+    min-height: 150px;
+    background-color: var(--comment);
 }
 
 .room-card h3{

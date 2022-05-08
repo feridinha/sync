@@ -2,25 +2,27 @@
     display: flex;
     position: absolute;
     border-radius: 8px;
-    transition: 0.3s;
+    transition: 0.6s;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     pointer-events: none;
     vertical-align: bottom;
     padding: 15px;
     padding-bottom: 0;
+    max-width: 200px;
 }
 
 .avatar-owner {
-    display: flex;
     opacity: 0;
     text-align: center;
     transition: 0.5s;
-
     font-size: 1rem;
     font-family: 'Segoe UI';
     font-weight: 600;
     line-height: 1rem;
+    margin: 2px;
+    word-break: break-all;
 }
 
 .avatar:hover {

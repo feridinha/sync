@@ -15,13 +15,13 @@ function Controls({ video, handleInput }) {
                 <button>
                     <img
                         onClick={() => handleInput("config")}
-                        src="src/assets/config.png"
+                        src="https://f.feridinha.com/sync/icons/config_.png"
                     ></img>
                 </button>
                 <button>
                     <img
                         onClick={() => handleInput("reload")}
-                        src="src/assets/reload.png"
+                        src="https://f.feridinha.com/sync/icons/reload.png"
                     ></img>
                 </button>
             </div>

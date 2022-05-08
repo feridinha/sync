@@ -9,3 +9,45 @@
         "dance-floor dance-floor dance-floor";
     overflow: hidden;
 }
+
+@media only screen and (max-width: 1300px) {
+    .container {
+        grid-template-columns: 1fr auto 1fr;
+        grid-template-rows: 50vh 15vh 35vh;
+        grid-template-areas:
+            "sidebar video video"
+            "sidebar controls controls"
+            "dance-floor dance-floor dance-floor";
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .container {
+        grid-template-rows: 41vh 17vh 23vh 36vh;
+        grid-template-areas:
+            "video video video"
+            "controls controls controls"
+            "dance-floor dance-floor dance-floor"
+            "sidebar sidebar sidebar";
+    }
+
+    .sidebar {
+        justify-self: center;
+        max-width: 450px;
+    }
+
+    @media only screen and (max-height: 600px) {
+        .container {
+            grid-template-rows: 41vh 59vh;
+            grid-template-areas:
+                "video video video"
+                "controls controls controls";
+        }
+        .queue-container {
+            display: none;
+        }
+        .dance-floor {
+            display: none;
+        }
+    }
+} 

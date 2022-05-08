@@ -1,7 +1,7 @@
 .video-player{
     display: flex;
     grid-area: video;
-    background-color: red;
+    /* background-color: red; */
     justify-content: center;
 }
 

@@ -31,7 +31,7 @@ class Avatar{
     }
 
     createImage(){
-        this.image = "/images/avatar/" +
+        this.image = 
         imagesAvailable[
             Math.floor(Math.random() * imagesAvailable.length)
         ]
@@ -39,7 +39,7 @@ class Avatar{
     }
 
     forceImage(image){
-        this.image = "/images/avatar/" + image
+        this.image = image
     }
 }
 

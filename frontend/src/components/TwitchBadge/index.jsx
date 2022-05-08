@@ -2,7 +2,7 @@ import "./TwitchBadge.css"
 
 function TwitchBadge({ user }) {
     if (!user) return
-    const imagePath = "https://f.feridinha.com/sync"
+    const imagePath = "https://f.feridinha.com/sync/badges"
     var badges = []
 
     if (user.dev || user.admin) badges.push(`staff.png`)
