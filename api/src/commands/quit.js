@@ -1,5 +1,5 @@
-const rooms = require("../models/rooms")
-const User = require("../models/User")
+const rooms = require("../classes/rooms")
+const User = require("../classes/User")
 
 function quit(args, tags, cli) {
     const user = new User(tags)

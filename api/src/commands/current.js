@@ -1,4 +1,4 @@
-const rooms = require("../models/rooms")
+const rooms = require("../classes/rooms")
 
 function current(args, tags, cli) {
     const current = rooms[tags.channel].player.current

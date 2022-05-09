@@ -14,7 +14,7 @@ class Video {
             this.uuid = uuidv4()
             this.duration = result.duration
             this.title = result.title
-            return true
+            return this
         }
         return false
     }

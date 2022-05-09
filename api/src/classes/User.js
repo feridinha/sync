@@ -1,6 +1,10 @@
 class User {
     constructor(tags) {
-        this.name = tags["display-name"]
+        this.name =
+            tags["display-name"].toLowerCase() !== tags.username
+                ? tags.username
+                : tags["display-name"] // Pega username quando o display-name for japonês
+        
         this.id = tags["user-id"]
         this.color = tags.color
         if (tags.badges?.vip === "1") this.vip = true

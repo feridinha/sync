@@ -30,6 +30,18 @@
 }
 
 .commands-list li{
+    text-align: start;
     list-style-type: none;
     color: #bd93f9;
+    /* background-color: red; */
+}
+
+.commands-list li .info{
+    color: #f8f8f8;
+    margin-left: 15px;
+}
+
+.commands-list li .args{
+    color: #50fa7b;
+    margin-left: 15px;
 }

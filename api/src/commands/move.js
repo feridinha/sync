@@ -1,4 +1,4 @@
-const rooms = require("../models/rooms")
+const rooms = require("../classes/rooms")
 
 function move(args, tags, cli) {
     const avatar = rooms[tags.channel].danceFloor.avatars.filter(

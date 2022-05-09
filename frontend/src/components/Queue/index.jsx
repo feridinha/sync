@@ -3,6 +3,7 @@ import { FiExternalLink } from "react-icons/fi"
 import { AnimatePresence, motion } from "framer-motion"
 
 function Queue({ videos, loading }) {
+    if(!videos) return
     const variants = {
         visible: (i) => ({
             opacity: 1,
@@ -16,7 +17,7 @@ function Queue({ videos, loading }) {
         <div className="queue-container">
             {!loading &&
                 videos.map((item, index) => (
-                    <AnimatePresence>
+                    <AnimatePresence exitBeforeEnter={true}>
                         <motion.div
                             custom={index}
                             animate="visible"

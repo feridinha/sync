@@ -5,7 +5,7 @@ function DanceFloor({ avatars }) {
     return (
         <div className="dance-floor">
             {avatars.map((item) => (
-                <Avatar key={item.uuid + item.position} avatar={item}/>
+                <Avatar key={item.uuid} avatar={item}/>
             ))}
         </div>
     )

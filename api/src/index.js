@@ -12,7 +12,7 @@ const io = require("socket.io")(server, {
         methods: ["GET", "POST"],
     },
 })
-const rooms = require("./models/rooms")
+const rooms = require("./classes/rooms")
 const events = require("./handlers/events")
 events.config(io, client)
 rooms.createObjects(events.emitter)
@@ -22,6 +22,7 @@ app.use("/", routes)
 io.on("connection", (socket) => {
     console.log(`[Socket]: Nova conexão, ${socket.id}`)
     socket.emit("ready")
+    
     socket.on("enter-room", (room) => {
         if (!room || !rooms.checkRoomExists(room))
             return socket.emit("invalid-room")

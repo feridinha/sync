@@ -1,6 +1,6 @@
-const rooms = require("../models/rooms")
-const Avatar = require("../models/Avatar")
-const User = require("../models/User")
+const rooms = require("../classes/rooms")
+const Avatar = require("../classes/Avatar")
+const User = require("../classes/User")
 
 function enter(args, tags, cli){
     const user = new User(tags)

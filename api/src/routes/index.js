@@ -1,7 +1,7 @@
 require("dotenv").config()
 const router = require("express").Router()
 const axios = require("axios")
-var rooms = require("../models/Rooms")
+var rooms = require("../classes/Rooms")
 
 router.get("/", (req, res) => {
     console.log("Bateu endpoint")
