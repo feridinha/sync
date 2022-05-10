@@ -11,6 +11,7 @@
     padding: 15px;
     padding-bottom: 0;
     max-width: 200px;
+    z-index: 0;
 }
 
 .avatar-owner {
@@ -31,6 +32,11 @@
     z-index: 2;
     padding-bottom: 25px;
     margin-bottom: 2px;
+    pointer-events: auto;
+}
+
+.avatar:hover img{
+    pointer-events: none;
 }
 
 .avatar:hover .avatar-owner {

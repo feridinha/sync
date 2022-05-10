@@ -12,8 +12,8 @@
 
 @media only screen and (max-width: 1300px) {
     .container {
-        grid-template-columns: 1fr auto 1fr;
-        grid-template-rows: 50vh 15vh 35vh;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 55vh 20vh 25vh;
         grid-template-areas:
             "sidebar video video"
             "sidebar controls controls"

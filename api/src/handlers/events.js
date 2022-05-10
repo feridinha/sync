@@ -6,6 +6,7 @@ var [socketIo, client] = []
 function config(io, cli) {
     socketIo = io
     client = cli
+    return this
 }
 
 emitter.on("ws-inform-room", (room, args) => {

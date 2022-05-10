@@ -7,6 +7,7 @@ function Help() {
             <ul className="commands-list">
                 <li>
                     %add
+                    <span className="args">[youtube-url]</span>
                     <span className="info">
                         Adiciona um vídeo para a queue, limite de 5 por usuário
                     </span>
@@ -19,16 +20,17 @@ function Help() {
                 </li>
                 <li>
                     %quit
+                    <span className="args">[posição]</span>
                     <span className="info">
                         Retira o seu vídeo pela sua posição, ex:
-                        <span class="extra">%quit 3</span>
+                        <span className="args">%quit 3</span>
                     </span>
                 </li>
                 <li>
                     %voteSkip
                     <span className="info">
                         Adiciona um voto para pular o vídeo atual, é necessário
-                        ter 70% dos votos
+                        ter <b>70%</b> dos votos
                     </span>
                 </li>
                 <li>
@@ -36,10 +38,10 @@ function Help() {
                 </li>
                 <li>
                     %skip
+                    <span className="args">[posição]</span>
                     <span className="info">
-                        <span class="args">[posição]</span>
                         Retira o vídeo pela sua posição, ex:
-                        <span class="extra">%skip 2</span>
+                        <span className="args">%skip 2</span>
                     </span>
                 </li>
                 <li>
@@ -50,19 +52,24 @@ function Help() {
                 </li>
                 <li>
                     %seek
+                    <span className="args">[operador][segundos]</span>
                     <span className="info">
-                        <span class="args">[operador][segundos]</span>
                         Muda o tempo atual do vídeo, ex:
-                        <span class="extra">%seek +10</span>
+                        <span className="args">%seek +10</span>
                     </span>
                 </li>
                 <li>
-                    %enter <span className="info"></span>
-                </li>
-                <li>
-                    %move
+                    %dancer
+                    <span className="args">enter</span>
                     <span className="info">
                         Adiciona seu avatar para a pista de dança
+                    </span>
+                </li>
+                <li>
+                    %dancer
+                    <span className="args">move</span>
+                    <span className="info">
+                    Muda a posição do seu avatar
                     </span>
                 </li>
             </ul>
