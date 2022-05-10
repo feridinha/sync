@@ -1,10 +1,9 @@
 class VideoPlayer {
     constructor(room, callback) {
         this.queue = []
+        this.votes = []
         this.room = room
         this.callback = callback
-        this.timeout = null
-        this.current = null
     }
 
     playOne() {
@@ -19,6 +18,7 @@ class VideoPlayer {
     }
 
     skipCurrent() {
+        this.votes = []
         this.current = null
         clearTimeout(this.timeout)
         this.queue.shift()
@@ -47,6 +47,17 @@ class VideoPlayer {
         }
         this.queue = this.queue.filter((item) => item.uuid !== id)
         this.callback.emit("ws-inform-room", this.room, ["queue", this.queue])
+    }
+
+    seekTo(operator, seconds) {
+        const result = this.current.video.seek(operator, seconds)
+        if (!result) return console.log("[Player]: Seek retornou erro...")
+        clearTimeout(this.timeout)
+        this.timeout = setTimeout(
+            this.skipCurrent.bind(this),
+            this.current.video.timeLeft()
+        )
+        this.callback.emit("ws-inform-room", this.room, ["info", this.current])
     }
 
     update() {

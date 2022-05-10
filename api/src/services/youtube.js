@@ -1,6 +1,6 @@
 require("dotenv").config()
-const axios = require("axios")
-const getVideoId = require("get-video-id")
+const { YouTube } = require('popyt')
+const youtube = new YouTube(process.env.YOUTUBE_API_KEY)
 
 function convertISO8601ToMs(duration) {
     const time_extractor = /^P([0-9]*D)?T([0-9]*H)?([0-9]*M)?([0-9]*S)?$/i
@@ -17,42 +17,26 @@ function convertISO8601ToMs(duration) {
             seconds * 1000
         )
     }
-    return 0
+    throw new Error("Não foi possível converter ISO8601 para Ms")
 }
 
-function getVideoData(url) {
-    data = getVideoId(url)
-    if (!data.id || !data.service) {
-        return false
-    } else if (data.service == "youtube") {
-        return data.id
-    }
-    return false
-}
-
-async function getVideoDuration(id) {
-    if (!id) {
+async function fetchVideoData(v) {
+    try {
+        const video = await youtube.getVideo(v)
+        return {
+            title: video.title,
+            duration: convertISO8601ToMs(video.data.contentDetails.duration),
+            id: video.id
+        }
+    } catch (err) {
+        console.log(err)
         return false
     }
-    url = `https://www.googleapis.com/youtube/v3/videos?key=${process.env.YOUTUBE_API_KEY}&part=contentDetails,snippet&id=${id}`
-
-    const response = await axios
-        .get(url)
-        .then((res) => {
-            try {
-                console.log(res.data.items[0].snippet.title)
-                duration = res.data.items[0].contentDetails.duration
-                title = res.data.items[0].snippet.title
-                duration = convertISO8601ToMs(duration)
-                return { duration, title }
-            } catch (err) {
-                return false
-            }
-        })
-        .catch((err) => {
-            return false
-        })
-    return response
 }
 
-module.exports = { getVideoDuration, getVideoData }
+const test = async () => {
+    const video = await youtube.getVideo('KEJwhrf')
+    console.log(video)
+}
+
+module.exports = fetchVideoData

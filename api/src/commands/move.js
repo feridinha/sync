@@ -14,4 +14,8 @@ function move(args, tags, cli) {
     console.log("Feito")
 }
 
-module.exports = move
+module.exports = {
+    name: "move",
+    aliases: [],
+    exec: move
+}

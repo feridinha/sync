@@ -1,6 +1,5 @@
 const VideoPlayer = require("./VideoPlayer")
 const DanceFloor = require("./DanceFloor")
-const { emitter: cb } = require("../handlers/events")
 var rooms = {
     // akkaiverso: {
     //     username: "akkaiverso",
@@ -34,7 +33,7 @@ var rooms = {
             .map((i) => i.username)
             .includes(target)
     },
-    createObjects: function () {
+    initialize: function (cb) {
         Object.keys(rooms).forEach((roomName) => {
             if (typeof rooms[roomName] === "function") return
             rooms[roomName].player = new VideoPlayer(roomName, cb)

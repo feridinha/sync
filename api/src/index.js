@@ -4,21 +4,20 @@ const cors = require("cors")
 app.use(cors())
 const routes = require("./routes")
 const server = require("http").createServer(app)
+
+// Initialize
+const io = require("./services/io").initialize(server)
 const client = require("./services/tmi")
-const io = require("socket.io")(server, {
-    cors: {
-        origin: "http://localhost:3000",
-        methods: ["GET", "POST"],
-    },
-})
+const events = require("./handlers/events").initialize(io, client)
+require("./classes/rooms").initialize(events.emitter)
 
-require("./handlers/events").config(io, client)
-require("./classes/rooms").createObjects()
-
-app.use("/", routes)
-
+// Handlers
 const handleSocket = require("./handlers/socket")
+const handleCommand = require("./handlers/command")
+
+// Routes && Events
+app.use("/", routes)
 io.on("connection", handleSocket.connnection)
+client.on("message", (c, t, m, s) => handleCommand(c, t, m, s, client))
 
 server.listen(9999)
-module.exports = io

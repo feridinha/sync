@@ -26,4 +26,8 @@ function getItemByIndex(index, array) {
     return array[index - 1]
 }
 
-module.exports = quit
+module.exports = {
+    name: "quit",
+    aliases: [],
+    exec: quit
+}

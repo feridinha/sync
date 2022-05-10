@@ -1,22 +1,24 @@
-const { getVideoDuration, getVideoData } = require("../services/youtube")
+const fetchVideoData = require("../services/youtube")
 const { v4: uuidv4 } = require("uuid")
 
 class Video {
     #startedTime
-
-    constructor(url) {
-        this.id = getVideoData(url)
+    #term
+    
+    constructor(term) {
+        this.#term = term
     }
 
     async getInfo() {
-        const result = await getVideoDuration(this.id)
-        if (result) {
-            this.uuid = uuidv4()
-            this.duration = result.duration
-            this.title = result.title
-            return this
-        }
-        return false
+        const result = await fetchVideoData(this.#term)
+        if (!result) return false
+
+        this.uuid = uuidv4()
+        this.duration = result.duration
+        this.title = result.title
+        this.id = result.id
+        return this
+
     }
 
     startPlaying() {
@@ -33,12 +35,8 @@ class Video {
 
     shortTitle() {
         return this.title.length > 200
-            ? this.title.substr(0, 170) + "..."
+            ? this.title.substring(0, 170) + "..."
             : this.title
-    }
-
-    getUtilData(){
-        
     }
 }
 

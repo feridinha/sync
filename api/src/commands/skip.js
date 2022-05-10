@@ -3,7 +3,7 @@ const User = require("../classes/User")
 
 function skip(args, tags, cli) {
     const user = new User(tags)
-    if (!(user.mod || user.broadcaster || user.admin)) return 
+    if (!(user.mod || user.broadcaster || user.admin)) return
 
     if (!parseInt(args[0])) {
         rooms[tags.channel].player.skipCurrent()
@@ -18,7 +18,10 @@ function skip(args, tags, cli) {
             `@Feridinha, não encontrei esse vídeo... :(`
         )
     rooms[tags.channel].player.removeById(item.uuid)
-    return cli.say(tags.channel, `@Feridinha, o vídeo #${args[0]} foi skipado ⏭️`)
+    return cli.say(
+        tags.channel,
+        `@Feridinha, o vídeo #${args[0]} foi skipado ⏭️`
+    )
 }
 
 function getItemByIndex(index, channel) {
@@ -27,4 +30,9 @@ function getItemByIndex(index, channel) {
     return rooms[channel].player.queue[index - 1]
 }
 
-module.exports = skip
+module.exports = {
+    name: "skip",
+    aliases: ["skipCurrent"],
+    exec: skip,
+    cooldown: 2000
+}

@@ -16,7 +16,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
-    "get-video-id": "^3.5.3",
+    "popyt": "^5.0.0",
     "pretty-ms": "^7.0.1",
     "socket.io": "^4.4.1",
     "tmi.js": "^1.8.5",

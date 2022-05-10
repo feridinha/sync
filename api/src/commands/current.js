@@ -9,4 +9,8 @@ function current(args, tags, cli) {
             : `@Feridinha Nenhum vídeo tocando xD`
     )
 }
-module.exports = current
+module.exports = {
+    name: "current",
+    aliases: ["video", "playing"],
+    exec: current
+}

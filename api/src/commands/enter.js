@@ -9,4 +9,8 @@ function enter(args, tags, cli){
     rooms[tags.channel].danceFloor.addAvatar(avatar)
 }
 
-module.exports = enter
+module.exports = {
+    name: "enter",
+    aliases: [],
+    exec: enter
+}
