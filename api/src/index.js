@@ -20,4 +20,5 @@ app.use("/", routes)
 io.on("connection", handleSocket.connnection)
 client.on("message", (c, t, m, s) => handleCommand(c, t, m, s, client))
 
+console.clear()
 server.listen(9999)
