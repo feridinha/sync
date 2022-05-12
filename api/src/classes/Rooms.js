@@ -20,6 +20,7 @@ var rooms = {
     createFromDatabase: async function (db) {
         const search = await RoomModel.find()
         search.forEach(s => {
+            if (rooms[s.room_name]?.player) return // Já foi criada
             rooms[s.room_name] = {}
             Object.assign(rooms[s.room_name], s._doc)
         })
@@ -28,6 +29,7 @@ var rooms = {
     createClasses: function (cb) {
         Object.keys(rooms).forEach((roomName) => {
             if (typeof rooms[roomName] === "function") return
+            if (rooms[roomName].player) return // Já foi criada
             rooms[roomName].player = new VideoPlayer(roomName, cb)
             rooms[roomName].danceFloor = new DanceFloor(roomName, cb)
         })
@@ -36,12 +38,12 @@ var rooms = {
         await this.createFromDatabase()
         this.createClasses(callback)
         this.getRoomsArray().forEach(i => callback.emit("tmi-join-channel", i.room_name))
-        setInterval(this.updateChannels(callback), 60 * 1000)
+        setTimeout(async () => await this.initialize(callback), 60 * 1000)
     },
     updateChannels: async function (callback) {
         const newRooms = await RoomModel.find()
         newRooms.forEach(r => {
-            callback.emit("tmi-join-channel", i.room_name)
+            callback.emit("tmi-join-channel", r.room_name)
         })
     }
 }
