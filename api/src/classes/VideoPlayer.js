@@ -27,6 +27,16 @@ class VideoPlayer {
         this.playOne()
     }
 
+    resetQueue() {
+        clearTimeout(this.timeout)
+        this.timeout = null
+        this.queue = []
+        this.current = null
+        console.log("[Player]: Resetei a lista")
+        this.callback.emit("ws-inform-room", this.room, ["reset-queue"])
+        this.update()
+    }
+
     addOne(video) {
         this.queue.push(video)
         this.callback.emit("ws-inform-room", this.room, ["queue", this.queue])
@@ -43,14 +53,14 @@ class VideoPlayer {
     }
 
     seekTo(operator, seconds) {
-        const result = this.current.video.seek(operator, seconds)
+        const result = this.current.seekTo(operator, seconds)
         if (!result) return console.log("[Player]: Seek retornou erro...")
         clearTimeout(this.timeout)
         this.timeout = setTimeout(
             this.skipCurrent.bind(this),
-            this.current.video.timeLeft()
+            this.current.timeLeft()
         )
-        this.callback.emit("ws-inform-room", this.room, ["info", this.current])
+        this.callback.emit("ws-inform-room", this.room, ["seek", this.current])
     }
 
     update() {

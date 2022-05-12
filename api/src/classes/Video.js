@@ -4,7 +4,7 @@ const { v4: uuidv4 } = require("uuid")
 class Video {
     #startedTime
     #term
-    
+
     constructor(term) {
         this.#term = term
     }
@@ -30,7 +30,26 @@ class Video {
     updateTime() {
         if (!this.#startedTime) this.startPlaying()
         this.time = Date.now() - this.#startedTime
+        if (this.time < 0) {
+            this.#startedTime = null
+            this.startPlaying()
+        }
         return this
+    }
+
+    seekTo(operator, seconds) {
+        if (operator === "+") {
+            this.#startedTime = this.#startedTime - seconds * 1000
+            this.updateTime()
+        } else if (operator === "-") {
+            this.#startedTime = this.#startedTime + seconds * 1000
+            this.updateTime()
+        }
+        return this
+    }
+
+    timeLeft() {
+        return this.#startedTime + this.duration - Date.now()
     }
 
     shortTitle() {

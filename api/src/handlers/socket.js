@@ -3,7 +3,7 @@ const rooms = require("../classes/rooms")
 function handleConnection(socket) {
     console.log(`[Socket]: Nova conexão, ${socket.id}`)
     socket.emit("ready")
-
+    socket.on("get-ready", () => socket.emit("ready"))
     socket.on("enter-room", (room) => {
         if (!room || !rooms.checkRoomExists(room))
             return socket.emit("invalid-room")
@@ -27,5 +27,5 @@ function handleConnection(socket) {
         socket.emit("avatars", rooms[socket.room].danceFloor.avatars)
     })
 }
-
+//
 module.exports = { connnection: handleConnection }

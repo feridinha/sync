@@ -14,6 +14,9 @@ export var player = {
     skipCurrent: function () {
         this.setVideo()
     },
+    seekTo: function (video)  {
+        this.ref.seekTo(video.time / 1000, true)
+    }
 }
 
 export function VideoPlayer(props) {

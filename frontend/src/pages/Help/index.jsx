@@ -16,9 +16,8 @@ function Help() {
                 <li>
                     %search
                     <span className="args">[título do vídeo]</span>
-                    <span className="info">
-                        Adiciona um vídeo pelo título
-                    </span>
+                    <div className="new">Novo comando</div>
+                    <span className="info">Adiciona um vídeo pelo título</span>
                 </li>
                 <li>
                     %quit
@@ -32,6 +31,13 @@ function Help() {
                     <span className="info">
                         Retira o seu vídeo pela sua posição, ex:
                         <span className="args">%quit 3</span>
+                    </span>
+                </li>
+                <li>
+                    %current <div className="new">Novo comando</div>
+                    <span className="info">
+                        Manda o título do vídeo atual
+                        <span className="more"> (cooldown de 10 segundos)</span>
                     </span>
                 </li>
                 <li>
@@ -55,7 +61,9 @@ function Help() {
                 </li>
                 <li>
                     %ping
-                    <span className="info">Retorna informações gerais sobre o bot</span>
+                    <span className="info">
+                        Retorna informações gerais sobre o bot
+                    </span>
                 </li>
                 <div className="twitch-badges">
                     <img
@@ -72,7 +80,11 @@ function Help() {
                     />
                 </div>
                 <li>
-                    %skip <span className="info">Pula o vídeo atual</span>
+                    %skip
+                    <span className="info">
+                        Pula o vídeo atual{" "}
+                        <span className="more"> (cooldown de 3 segundos)</span>
+                    </span>
                 </li>
                 <li>
                     %skip
@@ -109,11 +121,16 @@ function Help() {
                 <li>
                     %ban
                     <span className="args">[username]</span>
-                    <span className="info">Tira a permissão de usar o bot</span>
+                    <div className="new">Novo comando</div>
+                    <span className="info">
+                        Tira a permissão de usar o bot{" "}
+                        <span className="more"> (cooldown de 30 segundos)</span>
+                    </span>
                 </li>
                 <li>
                     %unban
                     <span className="args">[username]</span>
+                    <div className="new">Novo comando</div>
                     <span className="info">
                         Devolve a permissão de usar o bot
                     </span>

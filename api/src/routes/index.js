@@ -62,7 +62,6 @@ router.get("/login", async (req, res) => {
 })
 
 router.get("/get-rooms", (req, res) => {
-    console.log(rooms.getRoomsArray())
     res.send({data: rooms.getRoomsArray()})
 })
 

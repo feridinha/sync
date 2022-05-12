@@ -43,6 +43,7 @@ var rooms = {
         this.createClasses(callback)
         this.getRoomsArray().forEach(i => callback.emit("tmi-join-channel", i.room_name))
     },
+    
     update: async function (channel) {
         await this.createFromDatabase()
     }

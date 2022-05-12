@@ -30,6 +30,10 @@ function Room() {
             setLoading(false)
         })
 
+        socket.on("seek", data => {
+            player.seekTo(data)
+        })
+
         socket.on("skip", () => {
             console.log("skiped")
             setVideo(null)
@@ -37,7 +41,11 @@ function Room() {
         })
 
         socket.on("queue", (data) => setQueue(data))
-
+        socket.on("reset-queue", () => {
+            setQueue([])
+            setVideo(null)
+            player.skipCurrent()
+        })
         socket.on("new-avatar", (avatar) =>
             setAvatars((avatars) => [...avatars, avatar])
         )
@@ -49,12 +57,17 @@ function Room() {
             ])
         })
 
-        socket.on("invalid-room", () => setLoading(true))
+        socket.on("invalid-room", async () => {
+            setLoading(true)
+            await new Promise(r => setTimeout(r, 4000))
+            socket.emit("get-ready")
+        })
         socket.on("avatars", (data) => setAvatars(data))
-        socket.on("ready", () => {
+        socket.on("ready", async () => {
             socket.emit("enter-room", roomName)
             socket.emit("get-queue")
             socket.emit("get-avatars")
+            socket.emit("get-info")
         })
     }, [])
 
