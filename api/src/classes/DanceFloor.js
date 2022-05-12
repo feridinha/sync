@@ -6,7 +6,6 @@ class DanceFloor {
     }
 
     addAvatar(avatar) {
-        // Avatar model
         if (this.avatars.map((i) => i.user.id).includes(avatar.user.id))
             return false
         this.avatars.push(avatar)
@@ -15,7 +14,6 @@ class DanceFloor {
     }
 
     moveAvatar(avatar) {
-        // User model
         avatar.createPosition()
         this.callback.emit("ws-inform-room", this.room, [
             "update-avatar",

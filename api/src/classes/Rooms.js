@@ -11,12 +11,14 @@ var rooms = {
         })
         return result
     },
+    
     checkRoomExists: function (target) {
         return rooms
             .getRoomsArray()
             .map((i) => i.room_name)
             .includes(target)
     },
+
     createFromDatabase: async function (db) {
         const search = await RoomModel.find()
         search.forEach(s => {
@@ -26,6 +28,7 @@ var rooms = {
         })
         return true
     },
+
     createClasses: function (cb) {
         Object.keys(rooms).forEach((roomName) => {
             if (typeof rooms[roomName] === "function") return
@@ -34,18 +37,13 @@ var rooms = {
             rooms[roomName].danceFloor = new DanceFloor(roomName, cb)
         })
     },
+
     initialize: async function (callback) {
         await this.createFromDatabase()
         this.createClasses(callback)
         this.getRoomsArray().forEach(i => callback.emit("tmi-join-channel", i.room_name))
         setTimeout(async () => await this.initialize(callback), 60 * 1000)
     },
-    updateChannels: async function (callback) {
-        const newRooms = await RoomModel.find()
-        newRooms.forEach(r => {
-            callback.emit("tmi-join-channel", r.room_name)
-        })
-    }
 }
 
 module.exports = rooms

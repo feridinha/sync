@@ -19,4 +19,23 @@ async function fetchUserData(user) {
     return result
 }
 
-module.exports = { fetchUserData }
+async function fetchChannelMods(channelId, targetId) {
+    const result = await axios({
+        method: "get",
+        url: `https://api.twitch.tv/helix/moderation/moderators?broadcaster_id=${channelId}&user_id=${targetId}`,
+        headers: {
+            Authorization: `Bearer ${process.env.TMI_ACCESS_TOKEN}`,
+            "Client-Id": process.env.TMI_CLIENT_ID,
+        },
+    })
+        .then((response) => {
+            return response.data.data
+        })
+        .catch((err) => {
+            console.log(err)
+            return null
+        })
+    return result
+}
+
+module.exports = { fetchUserData, fetchChannelMods }

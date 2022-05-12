@@ -44,3 +44,15 @@
     color: #50fa7b;
     margin-left: 15px;
 }
+
+.commands-list .extra{
+    color: #ffb86c;
+    margin-left: 15px;
+}
+
+.commands-list .twitch-badges{
+    margin: 15px;
+    text-align: center;
+    justify-self: center;
+    align-self: center;
+}

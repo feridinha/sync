@@ -1,3 +1,4 @@
+import TwitchBadge from "../../components/TwitchBadge"
 import "./Help.css"
 
 function Help() {
@@ -10,6 +11,13 @@ function Help() {
                     <span className="args">[youtube-url]</span>
                     <span className="info">
                         Adiciona um vídeo para a queue, limite de 5 por usuário
+                    </span>
+                </li>
+                <li>
+                    %search
+                    <span className="args">[título do vídeo]</span>
+                    <span className="info">
+                        Adiciona um vídeo pelo título
                     </span>
                 </li>
                 <li>
@@ -33,6 +41,36 @@ function Help() {
                         ter <b>70%</b> dos votos
                     </span>
                 </li>
+                <li>
+                    %dancer
+                    <span className="args">enter</span>
+                    <span className="info">
+                        Adiciona seu avatar para a pista de dança
+                    </span>
+                </li>
+                <li>
+                    %dancer
+                    <span className="args">move</span>
+                    <span className="info">Muda a posição do seu avatar</span>
+                </li>
+                <li>
+                    %ping
+                    <span className="info">Retorna informações gerais sobre o bot</span>
+                </li>
+                <div className="twitch-badges">
+                    <img
+                        src="https://f.feridinha.com/sync/badges/staff.png"
+                        alt=""
+                    />
+                    <img
+                        src="https://f.feridinha.com/sync/badges/broadcaster.png"
+                        alt=""
+                    />
+                    <img
+                        src="https://f.feridinha.com/sync/badges/moderator.png"
+                        alt=""
+                    />
+                </div>
                 <li>
                     %skip <span className="info">Pula o vídeo atual</span>
                 </li>
@@ -58,18 +96,26 @@ function Help() {
                         <span className="args">%seek +10</span>
                     </span>
                 </li>
+                <div className="twitch-badges">
+                    <img
+                        src="https://f.feridinha.com/sync/badges/staff.png"
+                        alt=""
+                    />
+                    <img
+                        src="https://f.feridinha.com/sync/badges/broadcaster.png"
+                        alt=""
+                    />
+                </div>
                 <li>
-                    %dancer
-                    <span className="args">enter</span>
-                    <span className="info">
-                        Adiciona seu avatar para a pista de dança
-                    </span>
+                    %ban
+                    <span className="args">[username]</span>
+                    <span className="info">Tira a permissão de usar o bot</span>
                 </li>
                 <li>
-                    %dancer
-                    <span className="args">move</span>
+                    %unban
+                    <span className="args">[username]</span>
                     <span className="info">
-                    Muda a posição do seu avatar
+                        Devolve a permissão de usar o bot
                     </span>
                 </li>
             </ul>

@@ -1,4 +1,5 @@
 const normalizedPath = require("path").join(__dirname, "../commands/")
+const RoomModel = require("../models/Room")
 var commands = []
 require("fs")
     .readdirSync(normalizedPath)
@@ -11,31 +12,35 @@ TODO:
     %seek
 */
 
-function command(channel, tags, message, self, cli) {
+
+function setCommandCooldown(command) {
+    command.active = true
+    setTimeout(() => {
+        command.active = false
+    }, command.cooldown)
+}
+
+async function command(channel, tags, message, self, cli) {
     if (self || !message.startsWith("%")) return
-    const [command, ...args] = message.slice(1).split(/ +/g)
+    const [source, ...args] = message.slice(1).split(/ +/g)
     console.log(`[Service]: (${channel}) ${tags["display-name"]}: ${message}`)
 
-    var target = null
+    var command = commands.find((i) =>
+        (source === i.name || i.aliases?.includes(source))
+    )
 
-    commands.forEach((i) => {
-        if (command === i.name || i.aliases.includes(command)) {
-            return (target = i)
-        }
-    })
-    
-    tags.source = command.toLowerCase()
+    tags.source = source.toLowerCase()
     tags.channel = channel.replace("#", "")
 
-    if (!target || target.cooldown?.active) return
+    const bannedUsers = await RoomModel.findOne({ room_name: tags.channel }).select("bans")
+    if (bannedUsers?.bans.includes(tags["user-id"])) return console.log("Banido xD")
 
-    target?.exec(args, tags, cli)
+    if (!command || command.active) return
 
-    if (!target.cooldown) return
-    target.cooldown.active = true
-    setTimeout(() => {
-        target.cooldown.active = false
-    }, target.cooldown.time)
+    command.exec(args, tags, cli)
+
+    if (!command.cooldown) return
+    setCommandCooldown(command)
 }
 
 module.exports = handleCommand = command

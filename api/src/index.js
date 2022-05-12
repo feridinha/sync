@@ -20,6 +20,6 @@ app.use("/", routes)
 io.on("connection", handleSocket.connnection)
 
 client.on("connected", () => { rooms.initialize(events.emitter) })
-client.on("message", (c, t, m, s) => handleCommand(c, t, m, s, client))
+client.on("message", async (c, t, m, s) => await handleCommand(c, t, m, s, client))
 
 server.listen(9999)

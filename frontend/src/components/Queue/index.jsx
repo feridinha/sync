@@ -3,7 +3,7 @@ import { FiExternalLink } from "react-icons/fi"
 import { AnimatePresence, motion } from "framer-motion"
 
 function Queue({ videos, loading }) {
-    if(!videos) return
+    if (!videos) return
     const variants = {
         visible: (i) => ({
             opacity: 1,
@@ -15,9 +15,9 @@ function Queue({ videos, loading }) {
     }
     return (
         <div className="queue-container">
-            {!loading &&
-                videos.map((item, index) => (
-                    <AnimatePresence exitBeforeEnter={true}>
+            <AnimatePresence exitBeforeEnter={true}>
+                {!loading &&
+                    videos.map((item, index) => (
                         <motion.div
                             className="queue-item"
                             custom={index}
@@ -43,8 +43,8 @@ function Queue({ videos, loading }) {
                                 <FiExternalLink style={{ cursor: "pointer" }} />
                             </a>
                         </motion.div>
-                    </AnimatePresence>
-                ))}
+                    ))}
+            </AnimatePresence>
         </div>
     )
 }
