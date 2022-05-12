@@ -1,8 +1,9 @@
 const User = require("../classes/User")
 const Room = require("../models/Room")
 const twitch = require("../services/twitch")
+const rooms = require("../classes/rooms")
 
-async function handleRoomCreation(name) {
+async function handleRoomCreation(name, cli) {
     const result = await twitch.fetchUserData(name)
     if (!result) return false
     const display = result.display_name.toLowerCase() !== result.login
@@ -16,11 +17,13 @@ async function handleRoomCreation(name) {
         profile_image: result.profile_image_url,
         bans: [],
     })
-
+    await rooms.update()
+    await cli.join(name)
     return room
 }
-async function handleRoomDeletation(name) {
+async function handleRoomDeletation(name, cli) {
     name = name.toLowerCase()
+    await cli.part(name)
     const result = await Room.deleteOne({ room_name: name })
     return result
 }
@@ -37,12 +40,12 @@ async function room(args, tags, cli) {
             break
         case args[0] === "create" && Boolean(args[1]):
             console.log("asf")
-            const room = await handleRoomCreation(args[1])
+            const room = await handleRoomCreation(args[1], cli)
             if (room) await cli.say(tags.channel, `@${user.name}, sala criada com sucesso`)
             else await cli.say(tags.channel, `@${user.name}, erro ao criar sala`)
             break
         case args[0] === "delete" && Boolean(args[1]):
-            const result = await handleRoomDeletation(args[1])
+            const result = await handleRoomDeletation(args[1], cli)
             if (result) await cli.say(tags.channel, `@${user.name}, sala deletada com sucesso`)
             else await cli.say(tags.channel, `@${user.name}, erro ao deletar sala`)
             break

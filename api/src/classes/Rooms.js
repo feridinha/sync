@@ -11,7 +11,7 @@ var rooms = {
         })
         return result
     },
-    
+
     checkRoomExists: function (target) {
         return rooms
             .getRoomsArray()
@@ -42,8 +42,10 @@ var rooms = {
         await this.createFromDatabase()
         this.createClasses(callback)
         this.getRoomsArray().forEach(i => callback.emit("tmi-join-channel", i.room_name))
-        setTimeout(async () => await this.initialize(callback), 60 * 1000)
     },
+    update: async function (channel) {
+        await this.createFromDatabase()
+    }
 }
 
 module.exports = rooms
