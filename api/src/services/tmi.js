@@ -10,5 +10,5 @@ const client = new tmi.Client({
     channels: ["botirinho"],
 })
 
-// client.connect().then(() => { console.log("conectado xD") }).catch(console.error)
+client.connect().then(() => { console.log("conectado xD") }).catch(console.error)
 module.exports = client

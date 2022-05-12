@@ -36,7 +36,14 @@ var rooms = {
         await this.createFromDatabase()
         this.createClasses(callback)
         this.getRoomsArray().forEach(i => callback.emit("tmi-join-channel", i.room_name))
+        setInterval(this.updateChannels(callback), 60 * 1000)
     },
+    updateChannels: async function (callback) {
+        const newRooms = await RoomModel.find()
+        newRooms.forEach(r => {
+            callback.emit("tmi-join-channel", i.room_name)
+        })
+    }
 }
 
 module.exports = rooms

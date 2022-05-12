@@ -13,6 +13,10 @@ emitter.on("tmi-channel-message", (channel, message) => {
 })
 
 emitter.on("tmi-join-channel", async (channel) => {
+    const joinedChannels = await client
+    .getChannels()
+    .map((i) => i.replace("#", ""))
+    if(joinedChannels.includes(channel)) return console.log("Já entrei")
     await client.join(channel)
     console.log("entrei no ", channel)
 })
