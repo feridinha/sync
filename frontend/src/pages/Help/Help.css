@@ -1,10 +1,12 @@
 .help-container{
+    position: fixed;
     display: flex;
     width: calc(100%);
     align-items: center;
     text-align: center;
     word-break: break-word;
     flex-direction: column;
+    top: 0;
 }
 
 .help-container h3{

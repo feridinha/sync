@@ -4,8 +4,6 @@ import { motion, AnimatePresence } from "framer-motion"
 import Backdrop from "../Backdrop"
 
 function Modal({ handleClose, children }) {
-
-
     const dropIn = {
         hidden: {
             y: "-100vh",
