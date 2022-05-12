@@ -1,6 +1,5 @@
 require("dotenv").config()
 const tmi = require("tmi.js")
-const commands = require("../handlers/command")
 
 const client = new tmi.Client({
     options: { debug: false },
@@ -11,6 +10,5 @@ const client = new tmi.Client({
     channels: ["botirinho"],
 })
 
-client.connect().catch(console.error)
-
+// client.connect().then(() => { console.log("conectado xD") }).catch(console.error)
 module.exports = client

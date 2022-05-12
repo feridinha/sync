@@ -12,6 +12,11 @@ emitter.on("tmi-channel-message", (channel, message) => {
     client?.say(channel, message)
 })
 
+emitter.on("tmi-join-channel", async (channel) => {
+    await client.join(channel)
+    console.log("entrei no ", channel)
+})
+
 module.exports = events = {
     emitter,
     initialize: function (socketIo, cli) {

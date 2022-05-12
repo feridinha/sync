@@ -1,9 +1,9 @@
 const { Schema, model } = require("../services/database")
 
 const RoomSchema = new Schema({
-    name: String,
-    twitch_name: String,
-    twitch_id: String,
+    room_name: String, // twitch name
+    room_id: String,   // twitch id
+    display_name: String, // twitch display name
     profile_image: String,
     bans: [String],
     hidden: false

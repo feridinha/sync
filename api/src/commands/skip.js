@@ -7,7 +7,7 @@ function skip(args, tags, cli) {
 
     if (!parseInt(args[0])) {
         rooms[tags.channel].player.skipCurrent()
-        return cli.say(tags.channel, `@Feridinha, o vídeo atual foi skipado ⏭️`)
+        return cli.say(tags.channel, `@${user.name}, o vídeo atual foi skipado ⏭️`)
     }
 
     item = getItemByIndex(parseInt(args[0]), tags.channel)
@@ -15,12 +15,12 @@ function skip(args, tags, cli) {
     if (!item)
         return cli.say(
             tags.channel,
-            `@Feridinha, não encontrei esse vídeo... :(`
+            `@${user.name}, não encontrei esse vídeo... :(`
         )
     rooms[tags.channel].player.removeById(item.uuid)
     return cli.say(
         tags.channel,
-        `@Feridinha, o vídeo #${args[0]} foi skipado ⏭️`
+        `@${user.name}, o vídeo #${args[0]} foi skipado ⏭️`
     )
 }
 

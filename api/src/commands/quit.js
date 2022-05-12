@@ -9,10 +9,10 @@ function quit(args, tags, cli) {
 
     const userVideos = getItemsByUser(user, tags.channel)
     const target = getItemByIndex(index, userVideos)
-    if(!target) return cli.say(tags.channel, "@Feridinha, não encontrei nenhum vídeo... >(")
+    if(!target) return cli.say(tags.channel, `@${user.name}, não encontrei nenhum vídeo... >(`)
 
     rooms[tags.channel].player.removeById(target.uuid)
-    cli.say(tags.channel, `@Feridinha, seu vídeo foi removido com sucesso :O`)
+    cli.say(tags.channel, `@${user.name}, seu vídeo foi removido com sucesso :O`)
 }
 
 function getItemsByUser(user, channel) {

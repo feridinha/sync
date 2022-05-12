@@ -28,7 +28,7 @@ function Home() {
     return (
         <div className="rooms">
             {rooms.map(item => (
-                <RoomCard key={item.username} room={item}/>
+                <RoomCard key={item.room_name} room={item}/>
             ))}
         </div>
     )

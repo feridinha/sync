@@ -9,7 +9,12 @@ const server = require("http").createServer(app)
 const io = require("./services/io").initialize(server)
 const client = require("./services/tmi")
 const events = require("./handlers/events").initialize(io, client)
-require("./classes/rooms").initialize(events.emitter)
+const rooms = require("./classes/rooms")
+client.connect().then(
+    client.on("connected", async () => {
+        rooms.initialize(events.emitter)
+    })
+)
 
 // Handlers
 const handleSocket = require("./handlers/socket")
@@ -20,5 +25,4 @@ app.use("/", routes)
 io.on("connection", handleSocket.connnection)
 client.on("message", (c, t, m, s) => handleCommand(c, t, m, s, client))
 
-console.clear()
 server.listen(9999)

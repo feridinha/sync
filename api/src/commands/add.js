@@ -30,7 +30,11 @@ async function add(args, tags, cli) {
             `@${user.name}, limite de 5 vídeos ao mesmo tempo.`
         )
     rooms[tags.channel].player.addOne(video)
-
+    cli.say(
+        tags.channel,
+        `@${user.name}, o vídeo ${video.shortTitle()} foi adicionado #${queue.length
+        }`
+    )
     const avatar = new Avatar(user)
 
     rooms[tags.channel].danceFloor.addAvatar(

@@ -1,7 +1,7 @@
 require("dotenv").config()
 const router = require("express").Router()
 const axios = require("axios")
-var rooms = require("../classes/Rooms")
+var rooms = require("../classes/rooms")
 
 router.get("/", (req, res) => {
     console.log("Bateu endpoint")
@@ -62,6 +62,7 @@ router.get("/login", async (req, res) => {
 })
 
 router.get("/get-rooms", (req, res) => {
+    console.log(rooms.getRoomsArray())
     res.send({data: rooms.getRoomsArray()})
 })
 

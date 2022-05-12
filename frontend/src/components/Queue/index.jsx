@@ -19,13 +19,13 @@ function Queue({ videos, loading }) {
                 videos.map((item, index) => (
                     <AnimatePresence exitBeforeEnter={true}>
                         <motion.div
+                            className="queue-item"
                             custom={index}
                             animate="visible"
                             initial="hidden"
                             exit="hidden"
                             variants={variants}
                             key={item.uuid}
-                            className="queue-item"
                         >
                             {item.title}{" "}
                             <div

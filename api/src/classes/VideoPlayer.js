@@ -31,13 +31,6 @@ class VideoPlayer {
         this.queue.push(video)
         this.callback.emit("ws-inform-room", this.room, ["queue", this.queue])
         this.update()
-        this.callback.emit(
-            "tmi-channel-message",
-            "botirinho",
-            `@Feridinha, o vídeo ${video.shortTitle()} foi adicionado #${
-                this.queue.length
-            }`
-        )
     }
 
     removeById(id) {
