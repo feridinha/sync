@@ -5,7 +5,7 @@ function Loading() {
         <div className="loading-container">
             <img
                 className="loading-image-container"
-                src="/src/assets/loading.gif"
+                src="https://f.feridinha.com/nMoQe.gif"
                 alt=""
             />
         </div>
