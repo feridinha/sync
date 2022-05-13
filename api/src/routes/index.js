@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
 })
 
 router.get("/get-rooms", (req, res) => {
-    res.send({data: rooms.getRoomsArray()})
+    res.send({data: rooms.getRoomsList()})
 })
 
 module.exports = router

@@ -46,6 +46,15 @@ var rooms = {
     
     update: async function (channel) {
         await this.createFromDatabase()
+    },
+
+    getRoomsList: function () {
+        var result = []
+        Object.keys(rooms).forEach((name) => {
+            if (typeof rooms[name] === "function") return
+            result.push(name)
+        })
+        return result
     }
 }
 
