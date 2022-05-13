@@ -1,3 +1,3 @@
 import io from "socket.io-client"
-const socket = io("http://127.0.0.1:9999")
+const socket = io("https://api.feridinha.com")
 export default socket

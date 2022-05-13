@@ -8,7 +8,7 @@ function Home() {
 
     const fetchRooms = async () => {
         const response = await axios
-            .get("http://localhost:9999/get-rooms")
+            .get("https://api.feridinha.com/get-rooms")
             .then((response) => {
                 setRoom(response.data.data)
             })
