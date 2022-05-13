@@ -24,6 +24,7 @@ function Room() {
     const { roomName } = useParams()
 
     useEffect(() => {
+        console.log("dsfasdkfsdf")
         socket.on("info", (data) => {
             setVideo(data)
             player.setVideo(data)
