@@ -124,7 +124,7 @@ function Help() {
                     <div className="new">Novo comando</div>
                     <span className="info">
                         Tira a permissão de usar o bot{" "}
-                        <span className="more"> (cooldown de 30 segundos)</span>
+                        <span className="more"> (cooldown de 10 segundos)</span>
                     </span>
                 </li>
                 <li>
