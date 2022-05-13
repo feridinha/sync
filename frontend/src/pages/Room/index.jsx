@@ -59,9 +59,11 @@ function Room() {
 
         socket.on("invalid-room", async () => {
             setLoading(true)
+            console.log("room inválida")
             await new Promise(r => setTimeout(r, 4000))
             socket.emit("get-ready")
         })
+
         socket.on("avatars", (data) => setAvatars(data))
         socket.on("ready", async () => {
             socket.emit("enter-room", roomName)
