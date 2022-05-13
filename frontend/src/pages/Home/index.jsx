@@ -3,12 +3,13 @@ import { useState, useEffect } from "react"
 import RoomCard from "../../components/RoomCard"
 import "./Home.css"
 
+const API_PATH = process.env.API_PATH;
 function Home() {
     const [rooms, setRoom] = useState([])
 
     const fetchRooms = async () => {
         const response = await axios
-            .get("https://api.feridinha.com/get-rooms")
+            .get(`${API_PATH}/get-rooms`)
             .then((response) => {
                 setRoom(response.data.data)
             })

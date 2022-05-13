@@ -17,5 +17,6 @@ async function ping (args, tags, cli) {
 module.exports = {
     name: "ping",
     aliases: ["pong", "status"],
-    exec: ping
+    exec: ping,
+    cooldown: 20000
 }

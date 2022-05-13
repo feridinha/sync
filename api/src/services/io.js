@@ -8,7 +8,7 @@ exports.io = () => {
 exports.initialize = (server) => {
     io = sio(server, {
         cors: {
-            origin: "http://localhost:3000",
+            origin: process.env.IO_URL,
             methods: ["GET", "POST"],
         },
     })

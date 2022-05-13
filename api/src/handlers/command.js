@@ -35,8 +35,11 @@ async function command(channel, tags, message, self, cli) {
     if (bannedUsers?.bans.includes(tags["user-id"])) return console.log("Banido xD")
 
     if (!command || command.active) return
-
-    command.exec(args, tags, cli)
+    try{
+        command.exec(args, tags, cli)
+    } catch (err) {
+        console.error("Erro ao rodar comando: ", err)
+    }
 
     if (!command.cooldown) return
     setCommandCooldown(command)

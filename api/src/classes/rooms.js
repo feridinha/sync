@@ -43,16 +43,21 @@ var rooms = {
         this.createClasses(callback)
         this.getRoomsArray().forEach(i => callback.emit("tmi-join-channel", i.room_name))
     },
-    
+
     update: async function (channel) {
         await this.createFromDatabase()
     },
 
     getRoomsList: function () {
-        var result = []
-        Object.keys(rooms).forEach((name) => {
-            if (typeof rooms[name] === "function") return
-            result.push(name)
+        let result = []
+        Object.keys(this).forEach((roomName) => {
+            if (typeof this[roomName] === "function") return
+            result[roomName] = {
+                name: roomName,
+                profile_image: this[roomName].profile_image,
+                display_name: this[roomName].display_name,
+                room_id: this[roomName].room_id
+            }
         })
         return result
     }

@@ -9,7 +9,18 @@ router.get("/", (req, res) => {
 })
 
 router.get("/get-rooms", (req, res) => {
-    res.send({data: rooms.getRoomsList()})
+    let result = []
+    let a = rooms.getRoomsArray()
+    a.forEach((ta) => {
+        result.push({
+            room_name: ta.room_name,
+            profile_image: ta.profile_image,
+            display_name: ta.display_name,
+            room_id: ta.room_id,
+
+        })
+    })
+    res.send({ data: result })
 })
 
 module.exports = router

@@ -1,3 +1,4 @@
 import io from "socket.io-client"
-const socket = io("https://api.feridinha.com")
+const API_PATH = process.env.API_PATH;
+const socket = io(API_PATH)
 export default socket

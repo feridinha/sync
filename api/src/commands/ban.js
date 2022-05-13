@@ -51,5 +51,6 @@ async function handleAction(args, tags, cli) {
 module.exports = {
     name: "ban",
     aliases: ["unban"],
-    exec: handleAction
+    exec: handleAction,
+    cooldown: 30000
 }

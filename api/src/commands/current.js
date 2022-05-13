@@ -14,5 +14,6 @@ function current(args, tags, cli) {
 module.exports = {
     name: "current",
     aliases: ["video", "playing"],
-    exec: current
+    exec: current,
+    cooldown: 10000
 }

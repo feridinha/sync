@@ -34,5 +34,5 @@ module.exports = {
     name: "skip",
     aliases: ["skipCurrent"],
     exec: skip,
-    cooldown: 2000
+    cooldown: 3000
 }
