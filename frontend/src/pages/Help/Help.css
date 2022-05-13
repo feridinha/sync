@@ -1,5 +1,5 @@
 .help-container{
-    position: fixed;
+    position: absolute;
     display: flex;
     width: calc(100%);
     align-items: center;
