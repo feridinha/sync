@@ -24,7 +24,6 @@ function Room() {
     const { roomName } = useParams()
 
     useEffect(() => {
-        console.log("dsfasdkfsdf")
         socket.on("info", (data) => {
             setVideo(data)
             player.setVideo(data)
@@ -36,7 +35,7 @@ function Room() {
         })
 
         socket.on("skip", () => {
-            console.log("skiped")
+
             setVideo(null)
             player.skipCurrent()
         })

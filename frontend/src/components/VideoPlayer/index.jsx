@@ -29,7 +29,6 @@ export function VideoPlayer(props) {
     }
 
     const _stateChanged = (e) => {
-        console.log("state mudou")
         if (e.data === -1) {
             setVisible(true)
         } else {
