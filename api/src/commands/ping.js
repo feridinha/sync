@@ -6,7 +6,7 @@ async function ping (args, tags, cli) {
 
     const ping = (await cli.ping()) * 1000
 
-    const socketsNumber = Array.from(io.sockets.sockets.keys()).length
+    const socketsNumber = Array.from(io.sockets.sockets.keys()).length - 2
 
     const p = socketsNumber > 1 || socketsNumber === 0 ? "s" : ""
 
