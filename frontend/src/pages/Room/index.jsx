@@ -95,7 +95,7 @@ function Room() {
             <AnimatePresence initial={false} exitBeforeEnter={true}>
                 {modal && <Modal handleClose={handleModal}><Help></Help></Modal>}
             </AnimatePresence>
-            {loading && <Loading />}
+            {/* {loading && <Loading />} */}
             <div className="container">
                 <VideoPlayer playerReady={() => socket.emit("get-info")} />
                 <Controls video={video} handleInput={handleInput} />
