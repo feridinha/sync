@@ -5,7 +5,8 @@ import { useState } from "react"
 export var player = {
     ref: {},
     setVideo: function (video) {
-        this.ref.loadVideoById(
+        if(!this.ref.loadVideoById) return
+        this.ref?.loadVideoById(
             video ? video.id : "",
             video?.time / 1000,
             "large"
@@ -28,6 +29,7 @@ export function VideoPlayer(props) {
     }
 
     const _stateChanged = (e) => {
+        console.log("state mudou")
         if (e.data === -1) {
             setVisible(true)
         } else {

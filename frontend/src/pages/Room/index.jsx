@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
-import socket from "../../services/socket"
-
+import start from "../../services/socket"
+const socket = start()
 import { AnimatePresence } from "framer-motion"
 import Help from "../Help"
 
@@ -57,21 +57,15 @@ function Room() {
                 avatar,
             ])
         })
-
-        socket.on("invalid-room", async () => {
-            setLoading(true)
-            console.log("room inválida")
-            await new Promise(r => setTimeout(r, 4000))
-            socket.emit("get-ready")
-        })
-
         socket.on("avatars", (data) => setAvatars(data))
         socket.on("ready", async () => {
+            console.log("ready")
             socket.emit("enter-room", roomName)
             socket.emit("get-queue")
             socket.emit("get-avatars")
             socket.emit("get-info")
         })
+        socket.emit("get-ready")
     }, [])
 
     const handleInput = (type) => {

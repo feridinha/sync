@@ -1,4 +1,7 @@
 import io from "socket.io-client"
 const API_PATH = process.env.API_PATH;
-const socket = io(API_PATH)
-export default socket
+const start = () => {
+    const socket = io(API_PATH)
+    return socket
+}
+export default start
