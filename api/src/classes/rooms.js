@@ -18,11 +18,12 @@ var rooms = {
             .map((i) => i.room_name)
             .includes(target)
     },
-
     createFromDatabase: async function (db) {
         const search = await RoomModel.find()
         search.forEach(s => {
-            if (rooms[s.room_name]?.player) return // Já foi criada
+            if (rooms[s.room_name]?.player) { // Já foi criada
+                return
+            }
             rooms[s.room_name] = {}
             Object.assign(rooms[s.room_name], s._doc)
         })

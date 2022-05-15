@@ -29,7 +29,7 @@ export function VideoPlayer(props) {
     }
 
     const _stateChanged = (e) => {
-        if (e.data === -1) {
+        if (e.data === -1 && props.queue.length < 1) {
             setVisible(true)
         } else {
             setVisible(false)
@@ -54,7 +54,7 @@ export function VideoPlayer(props) {
                     opacity: visible ? 1 : 0,
                     zIndex: visible ? 1 : -1,
                     transition: "0.1s",
-                    transitionDelay: "1s",
+                    // transitionDelay: "1s",
                 }}
             >
                 <img src="https://f.feridinha.com/YRMse.webp" alt="" />

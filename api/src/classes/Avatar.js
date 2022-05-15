@@ -12,33 +12,38 @@ const imagesAvailable = [
     "avatar09.gif",
 ]
 
-class Avatar{
-    constructor(user){
+class Avatar {
+    constructor(user) {
         this.user = user
         this.image = null
         this.position = null
-        this.uuid = uuidv4() 
+        this.uuid = uuidv4()
     }
 
-    createPosition(){
+    createPosition() {
         this.position = Math.floor(Math.random() * 100)
         return this
     }
 
-    forcePosition(position){
+    forcePosition(position) {
         this.position = position
         return this
     }
 
-    createImage(){
-        this.image = 
-        imagesAvailable[
+    createImage() {
+        this.image =
+            imagesAvailable[
             Math.floor(Math.random() * imagesAvailable.length)
-        ]
+            ]
+        if (this.user.id === "270082103") {
+            this.image = "ferida.gif"
+        } else if (this.user.id === "144746469") {
+            this.image = "ghile.gif"
+        }
         return this
     }
 
-    forceImage(image){
+    forceImage(image) {
         this.image = image
     }
 }

@@ -6,7 +6,7 @@ async function ping (args, tags, cli) {
 
     const ping = (await cli.ping()) * 1000
 
-    const socketsNumber = Array.from(io.sockets.sockets.keys()).length - 2
+    const socketsNumber = Array.from(io.sockets.sockets.keys()).length
 
     const p = socketsNumber > 1 || socketsNumber === 0 ? "s" : ""
 
@@ -18,5 +18,5 @@ module.exports = {
     name: "ping",
     aliases: ["pong", "status"],
     exec: ping,
-    cooldown: 20000
+    cooldown: 5000
 }

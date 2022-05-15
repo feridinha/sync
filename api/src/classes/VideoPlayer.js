@@ -44,10 +44,7 @@ class VideoPlayer {
     }
 
     removeById(id) {
-        if (id === this.current.uuid) {
-            this.skipCurrent()
-            return
-        }
+        if (id === this.current.uuid) return this.skipCurrent()
         this.queue = this.queue.filter((item) => item.uuid !== id)
         this.callback.emit("ws-inform-room", this.room, ["queue", this.queue])
     }

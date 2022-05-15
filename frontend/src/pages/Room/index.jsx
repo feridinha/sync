@@ -10,7 +10,6 @@ import Queue from "../../components/Queue"
 import DanceFloor from "../../components/DanceFloor"
 import Loading from "../../components/Loading"
 import Modal from "../../components/Modal"
-
 import { useParams } from "react-router-dom"
 import "../../App.css"
 import "./Room.css"
@@ -30,22 +29,23 @@ function Room() {
             setLoading(false)
         })
 
-        socket.on("seek", data => {
+        socket.on("seek", (data) => {
             player.seekTo(data)
         })
 
         socket.on("skip", () => {
-
             setVideo(null)
             player.skipCurrent()
         })
 
         socket.on("queue", (data) => setQueue(data))
+
         socket.on("reset-queue", () => {
             setQueue([])
             setVideo(null)
             player.skipCurrent()
         })
+
         socket.on("new-avatar", (avatar) =>
             setAvatars((avatars) => [...avatars, avatar])
         )
@@ -56,15 +56,20 @@ function Room() {
                 avatar,
             ])
         })
+
         socket.on("avatars", (data) => setAvatars(data))
+
+        socket.on("invalid-room", () => {
+            window.location.href = "/"
+        })
+
         socket.on("ready", async () => {
             console.log("ready")
-            socket.emit("enter-room", roomName)
-            socket.emit("get-queue")
-            socket.emit("get-avatars")
-            socket.emit("get-info")
+            socket.emit("get-queue", roomName)
+            socket.emit("get-avatars", roomName)
+            socket.emit("get-info", roomName)
         })
-        socket.emit("get-ready")
+        socket.emit("enter-room", roomName)
     }, [])
 
     const handleInput = (type) => {
@@ -73,24 +78,31 @@ function Room() {
                 handleModal()
                 break
             case "reload":
-                socket.emit("get-info")
+                socket.emit("get-info", roomName)
                 break
         }
     }
 
     const handleModal = () => {
-        document.body.style.overflow = modal ? "auto" : "hidden"
         setModal(!modal)
     }
 
     return (
         <div className="App">
             <AnimatePresence initial={false} exitBeforeEnter={true}>
-                {modal && <Modal handleClose={handleModal}><Help></Help></Modal>}
+                {modal && (
+                    <Modal handleClose={handleModal}>
+                        <Help />
+                    </Modal>
+                )}
             </AnimatePresence>
             {loading && <Loading />}
             <div className="container">
-                <VideoPlayer playerReady={() => socket.emit("get-info")} />
+                <VideoPlayer
+                    playerReady={() => socket.emit("get-info", roomName)}
+                    video={video}
+                    queue={queue}
+                />
                 <Controls video={video} handleInput={handleInput} />
                 {!loading && <DanceFloor avatars={avatars} />}
                 {!loading && <Queue loading={loading} videos={queue} />}

@@ -3,12 +3,12 @@ const RoomModel = require("../models/Room")
 const twitch = require("../services/twitch")
 
 async function handleBan(args, tags, cli, user) {
-    if (user.id === tags["room-id"])
-        return cli.say(tags.channel, `@${user.name}, Você não pode banir o streamer :/ :(`)
-
     const target = await twitch.fetchUserData(args[0])
     if (!target?.id) return cli.say(tags.channel, `@${user.name}, não achei esse usuário :/`)
 
+    if (target.id === tags["room-id"])
+        return cli.say(tags.channel, `@${user.name}, Você não pode banir o streamer :/ :(`)
+        
     RoomModel.updateOne(
         { room_name: tags.channel },
         { $push: { bans: target.id } }, (err, success) => {
@@ -52,5 +52,5 @@ module.exports = {
     name: "ban",
     aliases: ["unban"],
     exec: handleAction,
-    cooldown: 30000
+    cooldown: 5000
 }

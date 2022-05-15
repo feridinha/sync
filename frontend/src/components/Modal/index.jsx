@@ -21,7 +21,7 @@ function Modal({ handleClose, children }) {
             },
         },
         exit: {
-            y: "100vh",
+            y: "-100vh",
             opacity: 0,
         },
     }
