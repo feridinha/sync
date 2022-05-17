@@ -17,12 +17,12 @@ $ cd sync
 
 ### [Api](https://github.com/feridinha/sync/tree/master/api)
 
-- Hospedado em [api.feridinha.com](api.feridinha.com) & [localhost:9999](localhost:9999)
+- Hospedado em [api.feridinha.com](https://api.feridinha.com) & [localhost:9999](http://localhost:9999)
 - Responsável em gerenciar toda a lógica da aplicação
 
 ### [Frontend](https://github.com/feridinha/sync/tree/master/frontend)
 
-- Hospedado em [sync.feridinha.com](sync.feridinha.com) & [localhost:3000](localhost:3000)
+- Hospedado em [sync.feridinha.com](https://sync.feridinha.com) & [localhost:3000](http://localhost:3000)
 - Representa a interface do usuário
 
 #
