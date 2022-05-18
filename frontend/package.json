@@ -15,9 +15,9 @@
     "react-icons": "^4.3.1",
     "react-player": "^2.10.0",
     "react-router-dom": "^6.3.0",
+    "react-tilty": "^2.0.3",
     "react-youtube": "^8.3.0",
-    "socket.io-client": "^4.4.1",
-    "use-3d-effect": "^1.1.0"
+    "socket.io-client": "^4.4.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",

@@ -23,33 +23,40 @@ function Room() {
     const { roomName } = useParams()
 
     useEffect(() => {
+        // Informa o vídeo tocando atualmente
         socket.on("info", (data) => {
             setVideo(data)
             player.setVideo(data)
             setLoading(false)
         })
 
+        // Muda o tempo do víde atual
         socket.on("seek", (data) => {
             player.seekTo(data)
         })
 
+        // Remove o vídeo atual
         socket.on("skip", () => {
             setVideo(null)
             player.skipCurrent()
         })
 
+        // Todos os vídeos na queue
         socket.on("queue", (data) => setQueue(data))
 
+        // Skip all
         socket.on("reset-queue", () => {
             setQueue([])
             setVideo(null)
             player.skipCurrent()
         })
 
+        // %avatar enter
         socket.on("new-avatar", (avatar) =>
             setAvatars((avatars) => [...avatars, avatar])
         )
 
+        // %avatar move
         socket.on("update-avatar", (avatar) => {
             setAvatars((avatars) => [
                 ...avatars.filter((i) => i.uuid !== avatar.uuid),
@@ -57,18 +64,21 @@ function Room() {
             ])
         })
 
+        // Todos os avatares
         socket.on("avatars", (data) => setAvatars(data))
 
-        socket.on("invalid-room", () => {
-            window.location.href = "/"
-        })
+        // Chamado quando a sala atual não existe, redireciona para Home
+        socket.on("invalid-room", () => (window.location.href = "/"))
 
+        // Chamado depois que a api confirma a existência da sala
         socket.on("ready", async () => {
             console.log("ready")
             socket.emit("get-queue", roomName)
             socket.emit("get-avatars", roomName)
             socket.emit("get-info", roomName)
         })
+
+        // Caso a sala exista, o servidor responderá com o evento "ready"
         socket.emit("enter-room", roomName)
     }, [])
 
@@ -83,12 +93,11 @@ function Room() {
         }
     }
 
-    const handleModal = () => {
-        setModal(!modal)
-    }
+    const handleModal = () => setModal(!modal)
 
     return (
         <div className="App">
+            {/* Modal */}
             <AnimatePresence initial={false} exitBeforeEnter={true}>
                 {modal && (
                     <Modal handleClose={handleModal}>
@@ -96,14 +105,19 @@ function Room() {
                     </Modal>
                 )}
             </AnimatePresence>
+
+            {/* Tela de carregamento */}
             {loading && <Loading />}
+
             <div className="container">
                 <VideoPlayer
                     playerReady={() => socket.emit("get-info", roomName)}
-                    video={video}
                     queue={queue}
                 />
+
                 <Controls video={video} handleInput={handleInput} />
+
+                {/* Só carrega depois que o websocket tiver sido iniciado */}
                 {!loading && <DanceFloor avatars={avatars} />}
                 {!loading && <Queue loading={loading} videos={queue} />}
             </div>

@@ -9,6 +9,7 @@ function TwitchBadge({ user }) {
     if (user.vip) badges.push(`vip.png`)
     else if (user.mod) badges.push(`moderator.png`)
     else if (user.broadcaster) badges.push(`broadcaster.png`)
+    if(user.dj) badges.push("dj.png")
     return (
         <div className="twitch-badges">
             {badges.map((i) => (

@@ -4,3 +4,14 @@
     flex-wrap: wrap;
     justify-content: center;
 }
+
+.logo-container{
+    display: flex;
+    justify-content: center;
+}
+
+.logo-container img {
+    height: 30vh;
+    width: auto;
+    aspect-ratio: 460/344;
+}

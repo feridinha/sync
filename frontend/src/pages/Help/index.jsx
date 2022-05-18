@@ -1,4 +1,3 @@
-import TwitchBadge from "../../components/TwitchBadge"
 import "./Help.css"
 
 function Help() {

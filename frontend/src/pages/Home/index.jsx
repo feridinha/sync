@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import RoomCard from "../../components/RoomCard"
 import "./Home.css"
 
-const API_PATH = process.env.API_PATH;
+const API_PATH = process.env.API_PATH
 function Home() {
     const [rooms, setRoom] = useState([])
 
@@ -27,11 +27,19 @@ function Home() {
     }, [])
 
     return (
-        <div className="rooms">
-            {rooms.map(item => (
-                <RoomCard key={item.room_name} room={item}/>
-            ))}
-        </div>
+        <>
+            <div className="logo-container">
+                <img
+                    src="https://f.feridinha.com/sync/logo.png"
+                    alt=""
+                />
+            </div>
+            <div className="rooms">
+                {rooms.map((item) => (
+                    <RoomCard key={item.room_name} room={item} />
+                ))}
+            </div>
+        </>
     )
 }
 

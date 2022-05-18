@@ -1,10 +1,15 @@
 .twitch-badges{
     display: inline-block;
-    height: 1rem;
+    /* height: 1rem; */
     width: auto;
-    vertical-align: bottom;
+    vertical-align: middle;
+    /* background-color: red; */
+    display: inline-flex;
+    justify-self: center;
 }
 
 .twitch-badges > img{
     margin-right: 2px;
+    max-height: 18px;
+    vertical-align: baseline;
 }
