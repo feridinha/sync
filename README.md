@@ -1,4 +1,4 @@
-<p align="center"><img src="https://cdn.discordapp.com/attachments/902322626670784532/975890862691213362/Sync.gif" width="230" height="172"></p>
+<p align="center"><img src="https://f.feridinha.com/sync/logo.gif" width="230" height="172"></p>
 
 #
 
