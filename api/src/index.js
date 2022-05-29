@@ -22,4 +22,4 @@ io.on("connection", handleSocket.connnection)
 client.on("connected", () => { rooms.initialize(events.emitter) })
 client.on("message", async (c, t, m, s) => await handleCommand(c, t, m, s, client))
 
-server.listen(9999)
+server.listen(9999, "localhost")
