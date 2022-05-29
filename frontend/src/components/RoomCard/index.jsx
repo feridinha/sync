@@ -12,7 +12,7 @@ function RoomCard({ room }) {
             speed={3000}
             reverse={true}
         >
-            <img className="room-image" src={room.profile_image} />
+            <img className="room-image" src={room.profile_image} draggable={false} />
             <h3>{room.display_name}</h3>
             <a href={`/${room.room_name}`} className="open-room-button">
                 Acessar

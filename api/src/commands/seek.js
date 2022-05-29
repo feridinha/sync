@@ -1,11 +1,9 @@
 const rooms = require("../classes/rooms")
-const User = require("../classes/User")
 
-async function seek(args, tags, cli) {
+async function seek({ args, tags, cli, user }) {
     if (!args.length > 0) return
     if (args[0].length < 2) return
 
-    const user = new User(tags)
     if (!(user.mod || user.broadcaster || user.admin)) return
 
     const operator = args[0][0]

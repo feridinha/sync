@@ -1,9 +1,7 @@
 const rooms = require("../classes/rooms")
-const User = require("../classes/User")
 
-function current(args, tags, cli) {
+function current({ tags, cli, user }) {
     const current = rooms[tags.channel].player.current
-    const user = new User(tags)
     cli.say(
         tags.channel,
         current

@@ -1,21 +1,21 @@
 const normalizedPath = require("path").join(__dirname, "../commands/")
-const RoomModel = require("../models/Room")
+const User = require("../classes/User")
+
 var commands = []
-require("fs")
+require("fs") // Adiciona todos os comandos da pasta ../commands para array acima
     .readdirSync(normalizedPath)
     .forEach((file) => {
-        commands.push(require("../commands/" + file))
+        var target = require("../commands/" + file)
+        target.channels = []
+        commands.push(target)
     })
-/*
-TODO: 
-    %skip all
-*/
 
-
-function setCommandCooldown(command) {
-    command.active = true
+function setCommandCooldown(command, channel) {
+    command.channels.push(channel)
     setTimeout(() => {
-        command.active = false
+        command.channels = command.channels.filter((i) => {
+            i !== channel
+        })
     }, command.cooldown)
 }
 
@@ -24,25 +24,28 @@ async function command(channel, tags, message, self, cli) {
     const [source, ...args] = message.slice(1).split(/ +/g)
     console.log(`[Service]: (${channel}) ${tags["display-name"]}: ${message}`)
 
-    var command = commands.find((i) =>
-        (source === i.name || i.aliases?.includes(source))
-    )
-
+    channel = channel.replace("#", "")
     tags.source = source.toLowerCase()
-    tags.channel = channel.replace("#", "")
+    tags.channel = channel
 
-    const bannedUsers = await RoomModel.findOne({ room_name: tags.channel }).select("bans")
-    if (bannedUsers?.bans.includes(tags["user-id"])) return console.log("Banido xD")
+    const commandTarget = commands.find(
+        (i) => source === i.name || i.aliases?.includes(source)
+    )
+    if (!commandTarget || commandTarget.channels.includes(channel)) return
 
-    if (!command || command.active) return
-    try{
-        command.exec(args, tags, cli)
+    const user = new User(tags)
+    await user.fetchExtraData(channel)
+
+    if (user.banned) return
+
+    try {
+        commandTarget.exec({ args, tags, cli, user })
     } catch (err) {
         console.error("Erro ao rodar comando: ", err)
     }
 
-    if (!command.cooldown) return
-    setCommandCooldown(command)
+    if (!commandTarget.cooldown) return
+    setCommandCooldown(commandTarget, channel)
 }
 
 module.exports = handleCommand = command

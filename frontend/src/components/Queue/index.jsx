@@ -10,12 +10,13 @@ function Queue({ videos, loading }) {
             transition: {
                 delay: 0.3,
             },
+            left: "auto"
         }),
-        hidden: { opacity: 0 },
+        hidden: { opacity: 0, left: "500px" },
     }
     return (
         <div className="queue-container">
-            <AnimatePresence exitBeforeEnter={true}>
+            <AnimatePresence exitBeforeEnter={false}>
                 {!loading &&
                     videos.map((item, index) => (
                         <motion.div

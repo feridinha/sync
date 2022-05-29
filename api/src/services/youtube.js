@@ -34,9 +34,19 @@ async function fetchVideoData(v) {
     }
 }
 
-const test = async () => {
-    const video = await youtube.getVideo('KEJwhrf')
-    console.log(video)
+async function fetchPlaylistItems(v) {
+    const result = await youtube.getPlaylistItems(v, part)
+    // result.map(i => i.data.contentDetails.duration = convertISO8601ToMs(i.data.contentDetails.duration))
+    result.forEach(i => console.log(i.data))
+    return result
 }
+
+
+const test = async () => {
+    const video = await fetchPlaylistItems('PLgYcYpivCy-ebuQWcqLZ7Ku_QkWn1b5B1')
+    // console.log(video)
+}
+
+
 
 module.exports = fetchVideoData

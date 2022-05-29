@@ -1,10 +1,12 @@
+const RoomModel = require("../models/Room")
+
 class User {
     constructor(tags) {
         this.name =
             tags["display-name"].toLowerCase() !== tags.username
                 ? tags.username
-                : tags["display-name"] // Pega username quando o display-name for japonês
-        
+                : tags["display-name"] // Pega username quando o display-name for weeb (utf-8)
+
         this.id = tags["user-id"]
         this.color = tags.color
         if (tags.badges?.vip === "1") this.vip = true
@@ -13,6 +15,12 @@ class User {
         if (["156584193", "94753308", "420011943"].includes(this.id))
             this.dev = true
         if (this.id === "270082103") this.admin = true
+    }
+
+    async fetchExtraData(channelName) {
+        const channelData = await RoomModel.findOne({ room_name: channelName }).select("djs bans")
+        if (channelData?.bans.includes(this.id)) this.banned = true
+        if (channelData?.djs.includes(this.id)) this.dj = true
     }
 }
 module.exports = User

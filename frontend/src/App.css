@@ -25,6 +25,14 @@ body {
     background-color: var(--background);
 }
 
-.ns{
+.ns {
     user-select: none;
+}
+
+.tooltip {
+    opacity: 1 !important;
+    background: rgba(25, 25, 25, 0.85) !important;
+    backdrop-filter: blur(5px);
+    transition: left 0.3s !important;
+    font-family: 'Segoe UI';
 }

@@ -6,6 +6,7 @@ const RoomSchema = new Schema({
     display_name: String, // twitch display name
     profile_image: String,
     bans: [String],
+    djs: [String],
     hidden: false
 })
 

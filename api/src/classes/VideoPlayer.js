@@ -7,7 +7,10 @@ class VideoPlayer {
     }
 
     playOne() {
-        if (this.queue.length < 1) return false //Nenhum vídeo na queue
+        if (this.queue.length < 1){
+            console.log("Nenhum vídeo queue, removi")
+            return this.callback.emit("dance-floor-timeout-start", this.room)
+        }
         this.current = this.queue[0]
         this.current.startPlaying()
         this.timeout = setTimeout(
@@ -63,6 +66,7 @@ class VideoPlayer {
     update() {
         if (!this.current && this.queue.length > 0) {
             console.log("[Player]: Novo vídeo tocando")
+            this.callback.emit("dance-floor-timeout-stop", this.room) // Não reinicia
             this.playOne()
         }
     }

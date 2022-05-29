@@ -27,6 +27,7 @@
     padding: 10px;
     justify-content: space-around;
     font-size: 1.1rem;
+    position: relative;
 }
 
 .queue-item a{

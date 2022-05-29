@@ -1,4 +1,4 @@
-const { v4: uuidv4 } = require('uuid')
+const { v4: uuidv4 } = require("uuid")
 
 const imagesAvailable = [
     "avatar01.gif",
@@ -32,9 +32,7 @@ class Avatar {
 
     createImage() {
         this.image =
-            imagesAvailable[
-            Math.floor(Math.random() * imagesAvailable.length)
-            ]
+            imagesAvailable[Math.floor(Math.random() * imagesAvailable.length)]
         if (this.user.id === "270082103") {
             this.image = "ferida.gif"
         } else if (this.user.id === "144746469") {

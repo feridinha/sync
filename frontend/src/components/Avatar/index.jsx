@@ -1,6 +1,7 @@
 import "./Avatar.css"
 import TwitchBadge from "../TwitchBadge"
 import { AnimatePresence, motion } from "framer-motion"
+import ReactTooltip from "react-tooltip"
 
 function Avatar({ avatar }) {
     const variants = {
@@ -11,9 +12,9 @@ function Avatar({ avatar }) {
                 delay: 0.5,
             },
         },
-        hidden: { 
+        hidden: {
             bottom: "-140px",
-            opacity: 0 
+            opacity: 0,
         },
     }
 
@@ -24,14 +25,25 @@ function Avatar({ avatar }) {
                 style={{ left: `calc(${avatar.position}% - (115px / 2))` }}
                 variants={variants}
                 animate="visible"
-                initial="hidden"
+                initial="visible"
                 exit="hidden"
             >
                 <div
                     className="avatar-owner"
                     style={{ color: avatar.user.color }}
                 >
-                    <TwitchBadge user={avatar.user}></TwitchBadge>
+                    <TwitchBadge
+                        user={avatar.user}
+                        toolTipId={avatar.uuid + "avatar"}
+                    />
+                    <ReactTooltip
+                        border={true}
+                        borderColor="#bd93f9"
+                        className="tooltip"
+                        place="top"
+                        effect="solid"
+                        id={avatar.uuid + "avatar"}
+                    />
                     {avatar.user.name}
                 </div>
                 <div className="image-container ns">

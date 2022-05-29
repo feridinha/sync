@@ -1,8 +1,6 @@
 const rooms = require("../classes/rooms")
-const User = require("../classes/User")
 
-function skip(args, tags, cli) {
-    const user = new User(tags)
+function skip({ args, tags, cli, user }) {
     if (!(user.mod || user.broadcaster || user.admin)) return
 
     if (!parseInt(args[0])) {

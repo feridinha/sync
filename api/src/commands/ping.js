@@ -1,6 +1,6 @@
 const io = require("../services/io").io()
 
-async function ping (args, tags, cli) {
+async function ping({ args, tags, cli }) {
     var usage = process.memoryUsage().heapTotal / 1024 / 1024
     usage = Math.round(usage * 100) / 100
 
@@ -18,5 +18,6 @@ module.exports = {
     name: "ping",
     aliases: ["pong", "status"],
     exec: ping,
-    cooldown: 5000
+    cooldown: 5000, // ms
 }
+

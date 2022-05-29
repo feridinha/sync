@@ -1,15 +1,13 @@
 const rooms = require("../classes/rooms")
-const User = require("../classes/User")
 
-function quit(args, tags, cli) {
-    const user = new User(tags)
+function quit({ args, tags, cli, user }) {
 
     if (!parseInt(args[0])) index = 1
     else index = parseInt(args[0])
 
     const userVideos = getItemsByUser(user, tags.channel)
     const target = getItemByIndex(index, userVideos)
-    if(!target) return cli.say(tags.channel, `@${user.name}, não encontrei nenhum vídeo... >(`)
+    if (!target) return cli.say(tags.channel, `@${user.name}, não encontrei nenhum vídeo... >(`)
 
     rooms[tags.channel].player.removeById(target.uuid)
     cli.say(tags.channel, `@${user.name}, seu vídeo foi removido com sucesso :O`)

@@ -64,6 +64,12 @@ function Room() {
             ])
         })
 
+        socket.on("remove-avatar", (avatar) => {
+            setAvatars((avatars) => [
+                ...avatars.filter((i) => i.uuid !== avatar.uuid)
+            ])
+        })
+        
         // Todos os avatares
         socket.on("avatars", (data) => setAvatars(data))
 
@@ -71,7 +77,7 @@ function Room() {
         socket.on("invalid-room", () => (window.location.href = "/"))
 
         // Chamado depois que a api confirma a existência da sala
-        socket.on("ready", async () => {
+        socket.on("ready", () => {
             console.log("ready")
             socket.emit("get-queue", roomName)
             socket.emit("get-avatars", roomName)

@@ -57,7 +57,7 @@ export function VideoPlayer(props) {
                     // transitionDelay: "1s",
                 }}
             >
-                <img src="https://f.feridinha.com/YRMse.webp" alt="" />
+                <img draggable={false} src="https://f.feridinha.com/YRMse.webp" alt="" />
                 Ninguém está tocando...
             </div>
             <YouTube

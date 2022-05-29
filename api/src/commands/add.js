@@ -1,38 +1,40 @@
 const rooms = require("../classes/rooms")
-const User = require("../classes/User")
 const Avatar = require("../classes/Avatar")
 const Video = require("../classes/Video")
 
-const isUrl = i => (i.match(/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi))
-
-async function add(args, tags, cli) {
+async function add({ args, tags, cli, user }) {
     if (!args.length > 0) return
-
-    const term = (tags.source === "search") ? args.join(" ") : args[0]
-    if (tags.source === "add" && !isUrl(args[0])) return
+    const term = args.join(" ") // Termo para o vídeo
     const video = new Video(term)
 
     if (!(await video.getInfo())) return
 
-    const user = new User(tags)
     video.author = user
 
     const queue = rooms[tags.channel].player.queue
 
-    if (videoDuplicates(queue, video))
+    if (videoDuplicates(queue, video) && !user.admin)
         return cli.say(
             tags.channel,
             `@${user.name}, esse vídeo já está na queue.`
         )
-    if (userInQueue(queue, user) > 4)
+    if (
+        userInQueue(queue, user) > 4 &&
+        !(user.admin || user.dj || user.broadcaster)
+    )
         return cli.say(
             tags.channel,
             `@${user.name}, limite de 5 vídeos ao mesmo tempo.`
         )
+    if (rooms[tags.channel].queuePaused) {
+        return cli.say(tags.channel, `@${user.name}, a queue está pausada.`)
+    }
+
     rooms[tags.channel].player.addOne(video)
     cli.say(
         tags.channel,
-        `@${user.name}, o vídeo ${video.shortTitle()} foi adicionado #${queue.length
+        `@${user.name}, o vídeo ${video.shortTitle()} foi adicionado #${
+            queue.length
         }`
     )
     const avatar = new Avatar(user)
@@ -53,5 +55,5 @@ function videoDuplicates(queue, video) {
 module.exports = {
     name: "add",
     aliases: ["search"],
-    exec: add
+    exec: add,
 }

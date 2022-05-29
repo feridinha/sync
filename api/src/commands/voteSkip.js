@@ -1,15 +1,13 @@
 const rooms = require("../classes/rooms")
-const User = require("../classes/User")
 const io = require("../services/io").io()
 
-function voteSkip(args, tags, cli) {
+function voteSkip({ args, tags, cli, user }) {
     const socketAmout = io.sockets.adapter.rooms.get(tags.channel).size
     const votes = rooms[tags.channel].player.votes
-    const user = new User(tags)
 
     if (votes.includes(user.id)) return
     votes.push(user.id)
-    if(getPercentage(votes.length, socketAmout) >= 70){
+    if (getPercentage(votes.length, socketAmout) >= 70) {
         console.log("Coloquei um voto ", votes.length, socketAmout)
         rooms[tags.channel].player.skipCurrent()
     }

@@ -28,12 +28,6 @@ function Home() {
 
     return (
         <>
-            <div className="logo-container">
-                <img
-                    src="https://f.feridinha.com/sync/logo.png"
-                    alt=""
-                />
-            </div>
             <div className="rooms">
                 {rooms.map((item) => (
                     <RoomCard key={item.room_name} room={item} />

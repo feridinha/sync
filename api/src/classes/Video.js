@@ -18,7 +18,10 @@ class Video {
         this.title = result.title
         this.id = result.id
         return this
+    }
 
+    setInfo({ duration, title, id }){
+        this.uuid = uuidv4()
     }
 
     startPlaying() {
