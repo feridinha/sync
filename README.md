@@ -34,7 +34,7 @@ $ cd sync
 
 #
 
-## ⚙️ Configurar váriaveis de ambiente (.env)
+## ⚙️ Configurar variáveis de ambiente (.env)
 
 ### [Api](https://github.com/feridinha/sync/tree/master/api)
 
