@@ -11,6 +11,7 @@ function RoomCard({ room }) {
             max={15}
             speed={3000}
             reverse={true}
+            gyroscope={false}
         >
             <img className="room-image" src={room.profile_image} draggable={false} />
             <h3>{room.display_name}</h3>

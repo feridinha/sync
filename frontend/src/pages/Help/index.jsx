@@ -15,7 +15,6 @@ function Help() {
                 <li>
                     %search
                     <span className="args">[título do vídeo]</span>
-                    <div className="new">Novo comando</div>
                     <span className="info">Adiciona um vídeo pelo título</span>
                 </li>
                 <li>
@@ -33,7 +32,7 @@ function Help() {
                     </span>
                 </li>
                 <li>
-                    %current <div className="new">Novo comando</div>
+                    %current
                     <span className="info">
                         Manda o título do vídeo atual
                         <span className="more"> (cooldown de 10 segundos)</span>
@@ -57,6 +56,21 @@ function Help() {
                     %dancer
                     <span className="args">move</span>
                     <span className="info">Muda a posição do seu avatar</span>
+                </li>
+                <li>
+                    %dancer
+                    <span className="args">change</span>
+                    <span className="more"> [Um número entre 1 e 9]</span>
+                    <div className="new">Novo comando</div>
+                    <span className="info">
+                        Muda a imagem do seu avatar para o número selecionado
+                    </span>
+                </li>
+                <li>
+                    %dancer
+                    <span className="args">exit</span>
+                    <div className="new">Novo comando</div>
+                    <span className="info">Remove o seu avatar</span>
                 </li>
                 <li>
                     %ping
@@ -120,7 +134,6 @@ function Help() {
                 <li>
                     %ban
                     <span className="args">[username]</span>
-                    <div className="new">Novo comando</div>
                     <span className="info">
                         Tira a permissão de usar o bot{" "}
                         <span className="more"> (cooldown de 10 segundos)</span>
@@ -129,9 +142,41 @@ function Help() {
                 <li>
                     %unban
                     <span className="args">[username]</span>
-                    <div className="new">Novo comando</div>
                     <span className="info">
                         Devolve a permissão de usar o bot
+                    </span>
+                </li>
+                <li>
+                    %dj
+                    <span className="args">add</span>
+                    <div className="new">Novo comando</div>
+                    <span className="info">
+                        Adiciona um usuário como dj, ele pode adicionar mais de
+                        5 músicas ao mesmo tempo
+                    </span>
+                </li>
+                <li>
+                    %dj
+                    <span className="args">remove</span>
+                    <div className="new">Novo comando</div>
+                    <span className="info">
+                        Tira o cargo de dj de um usuário
+                    </span>
+                </li>
+                <li>
+                    %queue
+                    <span className="args">pause</span>
+                    <div className="new">Novo comando</div>
+                    <span className="info">
+                        Pausa a queue, ou seja, nenhum música nova pode entrar na fila
+                    </span>
+                </li>
+                <li>
+                    %queue
+                    <span className="args">return</span>
+                    <div className="new">Novo comando</div>
+                    <span className="info">
+                        Ativa a queue novamente
                     </span>
                 </li>
             </ul>

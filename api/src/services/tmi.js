@@ -7,7 +7,7 @@ const client = new tmi.Client({
         username: "botirinho",
         password: process.env.TMI_ACCESS_TOKEN,
     },
-    channels: ["feridinha"],
+    channels: ["botirinho"],
 })
 
 client.connect().then(() => { console.log("conectado xD") }).catch(console.error)

@@ -28,6 +28,7 @@ function Room() {
             setVideo(data)
             player.setVideo(data)
             setLoading(false)
+            console.log(data)   
         })
 
         // Muda o tempo do víde atual
@@ -82,6 +83,7 @@ function Room() {
             socket.emit("get-queue", roomName)
             socket.emit("get-avatars", roomName)
             socket.emit("get-info", roomName)
+            document.title = "Sync - " + roomName
         })
 
         // Caso a sala exista, o servidor responderá com o evento "ready"
