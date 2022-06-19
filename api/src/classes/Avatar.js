@@ -33,9 +33,9 @@ class Avatar {
     createImage() {
         this.image =
             imagesAvailable[Math.floor(Math.random() * imagesAvailable.length)]
-        if (this.user.id === "270082103") {
+        if (this.user?.id === "270082103") {
             this.image = "ferida.gif"
-        } else if (this.user.id === "144746469") {
+        } else if (this.user?.id === "144746469") {
             this.image = "ghile.gif"
         }
         return this
