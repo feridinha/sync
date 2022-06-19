@@ -2,7 +2,7 @@
 
 #
 
-<p align="center"> Uma forma de assistir vídeos de forma sincronizada com sua comunidade da twitch. </p>
+<p align="center"> A melhor forma de assistir vídeos de forma sincronizada com sua comunidade da twitch. </p>
 
 ## 🏁 Comece
 
@@ -34,7 +34,7 @@ $ cd sync
 
 #
 
-## ⚙️ Configurar váriaveis de ambiente (.env)
+## ⚙️ Configurar variáveis de ambiente (.env)
 
 ### [Api](https://github.com/feridinha/sync/tree/master/api)
 
