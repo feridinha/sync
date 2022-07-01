@@ -16,7 +16,7 @@ const handleSocket = require("./handlers/socket")
 const handleCommand = require("./handlers/command")
 
 // Routes && Events
-app.use("/", routes)
+app.use("/api", routes)
 io.on("connection", handleSocket.connnection)
 
 client.on("connected", () => { rooms.initialize(events.emitter) })
